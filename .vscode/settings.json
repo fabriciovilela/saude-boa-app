@@ -1,0 +1,7 @@
+{
+    "files.exclude": {
+      ".vscode": true,
+      "backend/node_modules": true,
+      "backend/package-lock.json": true
+    }
+  }
