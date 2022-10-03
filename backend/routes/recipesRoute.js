@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     const recipes = await recipesModel.find();
     res.status(200).send(recipes);
   } catch (err) {
-    return res.status(400).send("Error listing recipe: " + err);
+    return res.status(400).send({error:"Error listing recipe: " + err});
   }
 });
 
@@ -23,7 +23,7 @@ router.post("/", authService.authorize, async (req, res) => {
     await newRecipe.save();
     return res.status(200).send(newRecipe);
   } catch (err) {
-    return res.status(400).send("Error create recipe: " + err);
+    return res.status(400).send({error:"Error create recipe: " + err});
   }
 });
 
@@ -32,7 +32,7 @@ router.get("/:recipeId", async (req, res) => {
     const recipe = await recipesModel.findById(req.params.recipeId);
     res.status(200).send(recipe);
   } catch (err) {
-    return res.status(400).send("Error listing recipe: " + err);
+    return res.status(400).send({error:"Error listing recipe: " + err});
   }
 });
 
@@ -50,10 +50,10 @@ router.put("/:recipeId", authService.authorize, async (req, res) => {
       );
       return res.status(200).send(updateRecipe);
     } else {
-      return res.status(403).send("Access denied to change this recipe");
+      return res.status(403).send({error:"Access denied to change this recipe"});
     }
   } catch (err) {
-    return res.status(400).send("Error update recipe: " + err);
+    return res.status(400).send({error:"Error update recipe: " + err});
   }
 });
 
@@ -65,12 +65,12 @@ router.delete("/:recipeId", authService.authorize, async (req, res) => {
     const tokenDec = await authService.decodeToken(token);
     if (tokenDec._id == recipeToDelete.createBy) {
       await recipesModel.findByIdAndRemove(req.params.recipeId);
-      res.status(200).send("Recipe has been deleted");
+      res.status(200).send({message:"Recipe has been deleted"});
     } else {
-      return res.status(403).send("Access denied to delete this recipe");
+      return res.status(403).send({error:"Access denied to delete this recipe"});
     }
   } catch (err) {
-    return res.status(400).send("Error delete recipe: " + err);
+    return res.status(400).send({error:"Error delete recipe: " + err});
   }
 });
 

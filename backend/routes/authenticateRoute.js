@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
     });
 
     if (!loginUser) {
-      res.status(404).send("Username or password is invalid");
+      res.status(404).send({error:"Username or password is invalid"});
       return;
     }
 
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).send("Failed to authenticate user: " + err);
+    res.status(500).send({error:"Failed to authenticate user: " + err});
   }
 });
 
@@ -44,7 +44,7 @@ router.post("/refresh-token", async (req, res) => {
     const data = await authService.decodeToken(token);
     const loginUser = await usersModel.findById(data._id);
     if (!loginUser) {
-      res.status(404).send("User not found");
+      res.status(404).send({error:"User not found"});
       return;
     }
     const tokenData = await authService.generateToken({
@@ -63,7 +63,7 @@ router.post("/refresh-token", async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).send("Failed to authenticate user: " + err);
+    res.status(500).send({error:"Failed to authenticate user: " + err});
   }
 });
 

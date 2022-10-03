@@ -42,10 +42,14 @@ app.use(function (req, res, next) {
 const recipes = require("./routes/recipesRoute");
 const user = require("./routes/usersRoute");
 const authenticate = require("./routes/authenticateRoute");
+const recipeCategories = require("./routes/recipeCategory");
+const recipeType = require("./routes/recipeType");
 
 app.use("/recipes", recipes);
 app.use("/user", user);
 app.use("/authenticate", authenticate);
+app.use("/category", recipeCategories);
+app.use("/type",recipeType);
 
 app.listen(port, () => {
   console.log("Server online");

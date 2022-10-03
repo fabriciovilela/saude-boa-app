@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
       },
     });
   } catch (err) {
-    return res.status(400).send("Error create user: " + err);
+    return res.status(400).send({error:"Error create user: " + err});
   }
 });
 
@@ -39,9 +39,9 @@ router.delete("/",authService.authorize, async (req, res) => {
     const tokenDec = await authService.decodeToken(token);
     //-------------Fazer um loop deletando todas as receitas criadas pelo usuario que esta sendo deletado
     await usersModel.findByIdAndRemove(tokenDec._id);
-    res.status(200).send("User has been deleted");
+    res.status(200).send({message:"User has been deleted"});
   } catch (err) {
-    return res.status(400).send("Error delete user: " + err);
+    return res.status(400).send({error:"Error delete user: " + err});
   }
 });
 
