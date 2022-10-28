@@ -1,0 +1,32 @@
+.header{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+}
+.headerOverlayFix{
+    margin-top: 90px;
+}
+.headerFristSection {
+    background-color: $primary;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $medium;
+}
+.headerLogotipo {
+  width: 120px;
+  height: 40px;
+}
+.headerLoginButton {
+  display: flex;
+  align-items: center;
+  .headerLoginButtonImage {
+    width: 18px;
+    height: 18px;
+  }
+  * {
+    padding: $small;
+  }
+}
