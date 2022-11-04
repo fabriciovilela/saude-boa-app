@@ -2,6 +2,11 @@
     "files.exclude": {
       ".vscode": true,
       "backend/node_modules": true,
-      "backend/package-lock.json": true
+      "backend/package-lock.json": true,
+      "frontend/node_modules": true,
+      "frontend/.next": true,
+      "frontend/.eslintrc.json": true,
+      "frontend/package-lock.json": true,
+      "frontend/.gitignore": true
     }
   }

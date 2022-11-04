@@ -52,5 +52,5 @@ app.use("/category", recipeCategories);
 app.use("/type",recipeType);
 
 app.listen(port, () => {
-  console.log("Server online");
+  console.log("Server online on url: http://localhost:" + port);
 });

@@ -1,26 +1,27 @@
 import RecipeItem from "../recipeItem/recipeItem";
 
-export default function RecipesList() {
-    return (
-      <>
-        <div className="recipesListContainer">
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-            <RecipeItem/>
-        </div>
-      </>
-    );
-  }
-  
+export default function RecipesList(props) {
+  return (
+    <>
+      <div className="recipesListContainer">
+        {props.firstListElement ? props.firstListElement : <></>}
+        {props.recipes && props.recipes.length > 0 ? (
+          props.recipes.map((recipe,index)=>{
+            return(
+              <>
+              {props.maxItens == null || props.maxItens && props.maxItens > index ?
+                <RecipeItem key={index} recipe={recipe} />
+                :
+                <></>
+              }
+              </>
+            )
+          })
+        ):(
+          <p className="dontHaveRecipeMessage">Nenhum item encontrado</p>
+        )
+      }
+      </div>
+    </>
+  );
+}

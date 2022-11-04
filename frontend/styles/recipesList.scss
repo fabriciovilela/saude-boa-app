@@ -8,3 +8,10 @@
         grid-template-columns: 1fr 1fr;
     }
 }
+
+.dontHaveRecipeMessage{
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: $medium;
+}

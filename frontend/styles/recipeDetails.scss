@@ -1,0 +1,41 @@
+.recipeTitle{
+    width: 100%;
+    text-align: center;
+}
+.recipeDetailsTwoColluns{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    .small{
+        width: 50%;
+        margin: $big;
+        *{
+            text-align: center;
+        }
+    }
+}
+.recipeDetailsItemImage{
+    width: calc(100% - $medium);
+    height: 340px;
+    margin: $medium;
+}
+
+.recipeDetailsIntro{
+    padding: $medium;
+}
+
+.recipeDetailsSection{
+    background-color: $light;
+    padding: $medium;
+    margin: $medium;
+}
+
+.recipeDetailsPreparationModeContainer{
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
+
+.RecipeDetauilsPreparationsBigNumber{
+    text-align: center;
+    font-size: 45px;
+    font-weight: bold;
+}

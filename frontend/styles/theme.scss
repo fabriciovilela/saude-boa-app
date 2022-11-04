@@ -9,8 +9,13 @@ $light: #faf7ea;
 
 $fontSize: 1rem;
 
-$small: 3px;
-$medium: 8px;
-$big: 16px;
+$small: 8px;
+$medium: 16px;
+$big: 26px;
 
 $mobileSize: 690px;
+
+*{
+    font-family:'roboto','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: .6s;
+}
