@@ -39,3 +39,17 @@
     font-size: 45px;
     font-weight: bold;
 }
+
+@media (max-width: $mobileSize) {
+    .recipeDetailsTwoColluns{
+        display: grid;
+        grid-template-columns: 1fr;
+        .small{
+            width: 100%;
+            margin: $big;
+            *{
+                text-align: center;
+            }
+        }
+    }
+}

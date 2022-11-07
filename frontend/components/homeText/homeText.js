@@ -2,7 +2,7 @@ export default function HomeText() {
   return (
     <>
       <div className="homeTextContainer">
-        <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
+        <h1 className="primaryColorText boldFont">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
         <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         <div className="homeTextSeparator" />
         <p>

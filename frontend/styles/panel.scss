@@ -1,0 +1,14 @@
+.panelColluns{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    >div{
+        padding: $medium;
+    }
+}
+
+@media (max-width: $mobileSize) {
+    .panelColluns{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}

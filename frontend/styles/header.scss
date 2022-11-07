@@ -2,6 +2,7 @@
     position: fixed;
     width: 100%;
     top: 0px;
+    z-index: 100;
 }
 .headerOverlayFix{
     margin-top: 90px;
@@ -13,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $medium;
+  padding: $small;
 }
 .headerLogotipo {
   width: 120px;
@@ -29,4 +30,8 @@
   * {
     padding: $small;
   }
+}
+
+.headerCurrentUserName{
+  overflow:hidden;
 }

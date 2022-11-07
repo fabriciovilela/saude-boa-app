@@ -1,0 +1,50 @@
+.inputLabel{
+    display: block;
+    margin-top: $medium;
+    font-weight: 700;
+}
+
+.textInput{
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    margin-top: $small;
+}
+
+.saveButton{
+    width: 100%;
+    margin-top: $medium;
+    padding: $medium;
+    background-color: $primary;
+    color: $light;
+    font-weight: 900;
+    font-size: 1.1em;
+}
+
+.listInputItem{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    column-gap: 12px;
+    margin-top: $small;
+    .textInput{
+        margin-top: 0;
+    }   
+}
+
+.listInputDeleteButton{
+    height: 100%;
+    background-color: $danger;
+    color: $light;
+    font-size: 0.9em;
+}
+
+.listInputAddItemButton{
+    width: 100%;
+    margin-top: $small;
+    padding: $small;
+    background-color: $info;
+    color: $light;
+    font-size: 0.9em;
+}

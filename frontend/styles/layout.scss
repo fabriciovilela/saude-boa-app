@@ -1,5 +1,11 @@
-.siteContainer{
-    width: 100%;
-    max-width: 1080px;
-    margin: 0 auto;
+.siteContainer {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+@media (max-width: $mobileSize) {
+  .siteContainer {
+    max-width: 95%;
+  }
 }

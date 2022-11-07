@@ -10,11 +10,11 @@ export default function Header() {
             <div>
               <div className="headerLoginButton">
                 <img src="#" alt="" className="headerLoginButtonImage" />
-                <p>Logar</p>
+                <p className="boldFont ligthText">Logar</p>
               </div>
               <div className="headerCurrentUserName">
-                <p>
-                  Bem vindo(a) <b>Nome do usuario</b>
+                <p className="ligthText">
+                  Bem vindo(a) <b className="boldFont ligthText">Nome do usuario</b>
                 </p>
               </div>
             </div>

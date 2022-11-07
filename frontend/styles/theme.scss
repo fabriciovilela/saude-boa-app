@@ -1,11 +1,11 @@
-$primary: #ffa52f;
+$primary: #3bc058;
 $secondary: #4e4e4e;
 $success: #21c27c;
 $danger: #c72a49;
 $warning: #e8bc1e;
 $info: #1fbfd1;
-$dark: #22131c;
-$light: #faf7ea;
+$dark: #717286;
+$light: #f2f6f8;
 
 $fontSize: 1rem;
 
@@ -18,4 +18,5 @@ $mobileSize: 690px;
 *{
     font-family:'roboto','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: .6s;
+    color: $dark;
 }

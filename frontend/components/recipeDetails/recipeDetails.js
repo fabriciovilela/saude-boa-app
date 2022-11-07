@@ -3,7 +3,7 @@ import RecipesList from "../recipesList/recipesList";
 export default function RecipeDetails() {
   return (
     <>
-      <h1 className="recipeTitle">Titulo de teste</h1>
+      <h1 className="recipeTitle primaryColorText boldFont">Titulo de teste</h1>
       <div className="recipeDetailsTwoColluns">
         <img src="#" alt="" className="recipeDetailsItemImage" />
         <div className="recipeDetailsIntro">
@@ -40,7 +40,7 @@ export default function RecipeDetails() {
       </div>
       <div className="recipeDetailsTwoColluns">
         <div className="recipeDetailsSection">
-          <h3>Ingredientes</h3>
+          <h3 className="primaryColorText boldFont">Ingredientes</h3>
           <ul>
             <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
             <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
@@ -51,7 +51,7 @@ export default function RecipeDetails() {
           </ul>
         </div>
         <div className="recipeDetailsSection">
-          <h3>Modo de preparo</h3>
+          <h3 className="primaryColorText boldFont">Modo de preparo</h3>
           <ul>
             <li>
               <div className="recipeDetailsPreparationModeContainer">

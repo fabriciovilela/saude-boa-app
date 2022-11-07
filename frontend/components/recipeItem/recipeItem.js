@@ -3,14 +3,14 @@ export default function RecipeItem() {
     <>
       <div className="recipeContainer">
         <div className="recipeHeader">
-          <p>Tipo de prato</p>
+          <p className="boldFont ligthText">Tipo de prato</p>
         </div>
         <img src="#" alt="" className="recipeItemImage" />
         <div className="recipeInfosPosition">
           <div className="recipeFront">
             <div className="recipeItemFrontContent">
               <p>Categoria do prato</p>
-              <h3>Nome do prato</h3>
+              <h3 className="primaryColorText boldFont">Nome do prato</h3>
               <p>
                 <b>Autor: </b>Nome exemplo
               </p>
