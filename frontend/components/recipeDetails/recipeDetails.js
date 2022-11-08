@@ -13,7 +13,7 @@ export default function RecipeDetails(props) {
         {props.recipe && props.recipe.name ? props.recipe.name : "Sem titulo"}
       </h1>
       <div className="recipeDetailsTwoColluns">
-        <div>
+        <div className="recipeDetailsImageContainer">
           <div className="recipeHeader">
             <p className="boldFont ligthText">
               {props.recipe &&
@@ -85,7 +85,7 @@ export default function RecipeDetails(props) {
               props.recipe.ingredients.map((ingredient, index) => {
                 return (
                   <>
-                    <li className="listSpace" key={index}>
+                    <li className="ingredientsListItem listSpace" key={index}>
                       {ingredient}
                     </li>
                   </>

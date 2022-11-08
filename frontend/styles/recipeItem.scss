@@ -47,6 +47,7 @@
 .recipeItemBackContent {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width: 100%;
   * {
     text-align: center;
   }
@@ -75,4 +76,42 @@
 
 .recipeItemBackContentItem{
   padding: $small;
+}
+
+@media (max-width: $mobileSize) {
+  .recipeContainer {
+    .recipeFront {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .recipeBack {
+      opacity: 1;
+    }
+    &:hover {
+      .recipeFront {
+        opacity: 1;
+      }
+      .recipeBack {
+        display: flex;
+        opacity: 1;
+      }
+    }
+  }
+
+  .recipeInfosPosition {
+    position: block;
+    width: 100%;
+    height: fit-content;
+    max-height: fit-content;
+    > .recipeBack,
+    > .recipeFront {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: fit-content;
+      max-height: fit-content;
+      display: flex;
+    }
+  }
 }
