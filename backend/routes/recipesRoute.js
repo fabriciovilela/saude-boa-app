@@ -5,7 +5,7 @@ const authService = require("../services/authService");
 
 router.get("/", async (req, res) => {
   try {
-    const recipes = await recipesModel.find();
+    const recipes = await recipesModel.find().populate('createBy', 'name').populate('recipeType', 'typeName').populate('recipeCategory', 'categoryName');
     res.status(200).send(recipes);
   } catch (err) {
     return res.status(400).send({error:"Error listing recipe: " + err});
@@ -29,7 +29,7 @@ router.post("/", authService.authorize, async (req, res) => {
 
 router.get("/:recipeId", async (req, res) => {
   try {
-    const recipe = await recipesModel.findById(req.params.recipeId);
+    const recipe = await recipesModel.findById(req.params.recipeId).populate('createBy', 'name').populate('recipeType', 'typeName').populate('recipeCategory', 'categoryName');
     res.status(200).send(recipe);
   } catch (err) {
     return res.status(400).send({error:"Error listing recipe: " + err});

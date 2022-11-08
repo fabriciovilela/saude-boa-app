@@ -1,18 +1,21 @@
-export default function RecipeItem() {
+import Link from 'next/link';
+
+export default function RecipeItem(props) {
   return (
     <>
       <div className="recipeContainer">
+      <Link href={"/recipe/" + props.recipe._id}>
         <div className="recipeHeader">
-          <p className="boldFont ligthText">Tipo de prato</p>
+          <p className="boldFont ligthText">{props.recipe.recipeType && props.recipe.recipeType.typeName ? props.recipe.recipeType.typeName: ""}</p>
         </div>
         <img src="#" alt="" className="recipeItemImage" />
         <div className="recipeInfosPosition">
           <div className="recipeFront">
             <div className="recipeItemFrontContent">
-              <p>Categoria do prato</p>
-              <h3 className="primaryColorText boldFont">Nome do prato</h3>
+              <p>{props.recipe.recipeCategory && props.recipe.recipeCategory.categoryName ? props.recipe.recipeCategory.categoryName: ""}</p>
+              <h3 className="primaryColorText boldFont">{props.recipe.name? props.recipe.name: ""}</h3>
               <p>
-                <b>Autor: </b>Nome exemplo
+                <b>Autor: </b>{props.recipe.createBy && props.recipe.createBy.name ? props.recipe.createBy.name: "Desconhecido"}
               </p>
             </div>
           </div>
@@ -20,15 +23,16 @@ export default function RecipeItem() {
             <div className="recipeItemBackContent">
               <div className="recipeItemBackContentItem">
                 <img src="#" alt="" className="recipeItemBackIcon" />
-                <p>Tempo de preparo</p>
+                <p>{props.recipe.preparationTime? props.recipe.preparationTime + "\nminutos": "Não informado"}</p>
               </div>
               <div className="recipeItemBackContentItem">
                 <img src="#" alt="" className="recipeItemBackIcon" />
-                <p>Rendimento </p>
+                <p>{props.recipe.yield? props.recipe.yield: "Não informado"}</p>
               </div>
             </div>
           </div>
         </div>
+        </Link>
       </div>
     </>
   );

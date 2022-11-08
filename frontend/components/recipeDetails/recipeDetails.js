@@ -1,104 +1,132 @@
 import RecipesList from "../recipesList/recipesList";
 
-export default function RecipeDetails() {
+export default function RecipeDetails(props) {
+
+  const returnDataString = date => {
+    const javascriptDate = new Date(date*1);
+    return (javascriptDate.getDay() > 9 ? javascriptDate.getDay() : ("0" + javascriptDate.getDay())) + "/" + (javascriptDate.getMonth() > 9 ? javascriptDate.getMonth() : ("0" + javascriptDate.getMonth())) + "/" + javascriptDate.getFullYear();
+  };
+
   return (
     <>
-      <h1 className="recipeTitle primaryColorText boldFont">Titulo de teste</h1>
+      <h1 className="recipeTitle primaryColorText boldFont">
+        {props.recipe && props.recipe.name ? props.recipe.name : "Sem titulo"}
+      </h1>
       <div className="recipeDetailsTwoColluns">
-        <img src="#" alt="" className="recipeDetailsItemImage" />
+        <div>
+          <div className="recipeHeader">
+            <p className="boldFont ligthText">
+              {props.recipe &&
+              props.recipe.recipeType &&
+              props.recipe.recipeType.typeName
+                ? props.recipe.recipeType.typeName
+                : ""}
+            </p>
+          </div>
+          <img src="#" alt="" className="recipeDetailsItemImage" />
+        </div>
         <div className="recipeDetailsIntro">
-          <h3>Categoria do prato</h3>
+          <h3>
+            {props.recipe &&
+            props.recipe.recipeCategory &&
+            props.recipe.recipeCategory.categoryName
+              ? props.recipe.recipeCategory.categoryName
+              : ""}
+          </h3>
           <div className="recipeDetailsTwoColluns">
             <p>
-              <b>Autor: </b>Nome exemplo
+              <b>Autor: </b>
+              {props.recipe &&
+              props.recipe.createBy &&
+              props.recipe.createBy.name
+                ? props.recipe.createBy.name
+                : "Desconhecido"}
             </p>
             <p>
-              <b>Data de publicação: </b>Data exemplo
+              <b>Data de publicação: </b>
+              {props.recipe &&
+              props.recipe.createDate
+                ? returnDataString(props.recipe.createDate)
+                : ""}
             </p>
           </div>
           <div className="recipeDetailsTwoColluns small">
             <div className="recipeItemBackContentItem">
               <img src="#" alt="" className="recipeItemBackIcon" />
-              <p>Tempo de preparo</p>
+              <p>
+                {props.recipe && props.recipe.preparationTime
+                  ? props.recipe.preparationTime + " minutos"
+                  : "Não informado"}
+              </p>
             </div>
             <div className="recipeItemBackContentItem">
               <img src="#" alt="" className="recipeItemBackIcon" />
-              <p>Rendimento </p>
+              <p>
+                {props.recipe && props.recipe.yield
+                  ? props.recipe.yield
+                  : "Não informado"}
+              </p>
             </div>
           </div>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque elementum augue eget lacinia ultrices. Vestibulum in
-            mauris leo. Nunc finibus tortor nec ipsum luctus tristique. Aliquam
-            faucibus efficitur lorem vel tempor. Donec tempus facilisis orci, et
-            pellentesque ipsum varius quis. Duis accumsan, tellus a lobortis
-            finibus, enim sem pellentesque elit, ac varius nibh urna in quam.
-            Nulla lacinia, elit ut tristique hendrerit, nulla massa auctor
-            felis, vel dignissim nisl leo et nisl.
+            {props.recipe && props.recipe.description
+              ? props.recipe.description
+              : "Sem descrição"}
           </p>
         </div>
       </div>
       <div className="recipeDetailsTwoColluns">
         <div className="recipeDetailsSection">
-          <h3 className="primaryColorText boldFont">Ingredientes</h3>
+          <h3 className="primaryColorText boldFont listSpace">Ingredientes</h3>
           <ul>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+            {props.recipe &&
+            props.recipe.ingredients &&
+            props.recipe.ingredients.length > 0 ? (
+              props.recipe.ingredients.map((ingredient, index) => {
+                return (
+                  <>
+                    <li className="listSpace" key={index}>
+                      {ingredient}
+                    </li>
+                  </>
+                );
+              })
+            ) : (
+              <li>Ingredientes não informados</li>
+            )}
           </ul>
         </div>
         <div className="recipeDetailsSection">
-          <h3 className="primaryColorText boldFont">Modo de preparo</h3>
+          <h3 className="primaryColorText boldFont listSpace">
+            Modo de preparo
+          </h3>
           <ul>
-            <li>
-              <div className="recipeDetailsPreparationModeContainer">
-                <p className="RecipeDetauilsPreparationsBigNumber">1.</p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Pellentesque elementum augue eget lacinia ultrices. Vestibulum
-                  in mauris leo. Nunc finibus tortor nec ipsum luctus tristique.
-                  Aliquam faucibus efficitur lorem vel tempor. Donec tempus
-                  facilisis orci, et pellentesque ipsum varius quis. Duis
-                  accumsan, tellus a lobortis finibus, enim sem pellentesque
-                  elit, ac varius nibh urna in quam. Nulla lacinia, elit ut
-                  tristique hendrerit, nulla massa auctor felis, vel dignissim
-                  nisl leo et nisl.
-                </p>
-                <p className="RecipeDetauilsPreparationsBigNumber">2.</p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Pellentesque elementum augue eget lacinia ultrices. Vestibulum
-                  in mauris leo. Nunc finibus tortor nec ipsum luctus tristique.
-                  Aliquam faucibus efficitur lorem vel tempor. Donec tempus
-                  facilisis orci, et pellentesque ipsum varius quis. Duis
-                  accumsan, tellus a lobortis finibus, enim sem pellentesque
-                  elit, ac varius nibh urna in quam. Nulla lacinia, elit ut
-                  tristique hendrerit, nulla massa auctor felis, vel dignissim
-                  nisl leo et nisl.
-                </p>
-                <p className="RecipeDetauilsPreparationsBigNumber">3.</p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Pellentesque elementum augue eget lacinia ultrices. Vestibulum
-                  in mauris leo. Nunc finibus tortor nec ipsum luctus tristique.
-                  Aliquam faucibus efficitur lorem vel tempor. Donec tempus
-                  facilisis orci, et pellentesque ipsum varius quis. Duis
-                  accumsan, tellus a lobortis finibus, enim sem pellentesque
-                  elit, ac varius nibh urna in quam. Nulla lacinia, elit ut
-                  tristique hendrerit, nulla massa auctor felis, vel dignissim
-                  nisl leo et nisl.
-                </p>
-              </div>
-            </li>
+            {props.recipe &&
+            props.recipe.preparation &&
+            props.recipe.preparation.length > 0 ? (
+              props.recipe.preparation.map((preparation, index) => {
+                return (
+                  <>
+                    <li className="listSpace">
+                      <div className="recipeDetailsPreparationModeContainer">
+                        <p className="RecipeDetauilsPreparationsBigNumber">
+                          {preparation.position}.
+                        </p>
+                        <p>{preparation.instruction}</p>
+                      </div>
+                    </li>
+                  </>
+                );
+              })
+            ) : (
+              <li>Passo a passo não informados</li>
+            )}
           </ul>
         </div>
       </div>
 
-      <p>Veja também</p>
-      <RecipesList recipes={[0, 0, 0, 0]} maxItens={4} />
+      <h2 className="primaryColorText boldFont centerFont">Veja também</h2>
+      <RecipesList recipes={props.recipes} maxItens={4} />
     </>
   );
 }
