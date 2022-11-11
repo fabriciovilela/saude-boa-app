@@ -5,10 +5,30 @@ const authService = require("../services/authService");
 
 router.get("/", async (req, res) => {
   try {
-    const recipes = await recipesModel.find().populate('createBy', 'name').populate('recipeType', 'typeName').populate('recipeCategory', 'categoryName');
+    const recipes = await recipesModel
+      .find()
+      .populate("createBy", "name")
+      .populate("recipeType", "typeName")
+      .populate("recipeCategory", "categoryName");
     res.status(200).send(recipes);
   } catch (err) {
-    return res.status(400).send({error:"Error listing recipe: " + err});
+    return res.status(400).send({ error: "Error listing recipe: " + err });
+  }
+});
+
+router.get("/filter/:categorieId/:typeId", async (req, res) => {
+  try {
+    const recipes = await recipesModel
+      .find({
+        recipeCategory: req.params.categorieId,
+        recipeType: req.params.typeId,
+      })
+      .populate("createBy", "name")
+      .populate("recipeType", "typeName")
+      .populate("recipeCategory", "categoryName");
+    res.status(200).send(recipes);
+  } catch (err) {
+    return res.status(400).send({ error: "Error listing recipe: " + err });
   }
 });
 
@@ -23,16 +43,20 @@ router.post("/", authService.authorize, async (req, res) => {
     await newRecipe.save();
     return res.status(200).send(newRecipe);
   } catch (err) {
-    return res.status(400).send({error:"Error create recipe: " + err});
+    return res.status(400).send({ error: "Error create recipe: " + err });
   }
 });
 
 router.get("/:recipeId", async (req, res) => {
   try {
-    const recipe = await recipesModel.findById(req.params.recipeId).populate('createBy', 'name').populate('recipeType', 'typeName').populate('recipeCategory', 'categoryName');
+    const recipe = await recipesModel
+      .findById(req.params.recipeId)
+      .populate("createBy", "name")
+      .populate("recipeType", "typeName")
+      .populate("recipeCategory", "categoryName");
     res.status(200).send(recipe);
   } catch (err) {
-    return res.status(400).send({error:"Error listing recipe: " + err});
+    return res.status(400).send({ error: "Error listing recipe: " + err });
   }
 });
 
@@ -50,10 +74,12 @@ router.put("/:recipeId", authService.authorize, async (req, res) => {
       );
       return res.status(200).send(updateRecipe);
     } else {
-      return res.status(403).send({error:"Access denied to change this recipe"});
+      return res
+        .status(403)
+        .send({ error: "Access denied to change this recipe" });
     }
   } catch (err) {
-    return res.status(400).send({error:"Error update recipe: " + err});
+    return res.status(400).send({ error: "Error update recipe: " + err });
   }
 });
 
@@ -65,12 +91,14 @@ router.delete("/:recipeId", authService.authorize, async (req, res) => {
     const tokenDec = await authService.decodeToken(token);
     if (tokenDec._id == recipeToDelete.createBy) {
       await recipesModel.findByIdAndRemove(req.params.recipeId);
-      res.status(200).send({message:"Recipe has been deleted"});
+      res.status(200).send({ message: "Recipe has been deleted" });
     } else {
-      return res.status(403).send({error:"Access denied to delete this recipe"});
+      return res
+        .status(403)
+        .send({ error: "Access denied to delete this recipe" });
     }
   } catch (err) {
-    return res.status(400).send({error:"Error delete recipe: " + err});
+    return res.status(400).send({ error: "Error delete recipe: " + err });
   }
 });
 

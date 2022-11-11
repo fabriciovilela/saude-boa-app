@@ -1,7 +1,7 @@
 import Link from "next/link";
 import HeaderMenu from "./headerMenu";
 
-export default function Header() {
+export default function Header(props) {
   return (
     <>
       <div className="header">
@@ -25,7 +25,7 @@ export default function Header() {
           </div>
         </div>
         <div className="headerMenuContainer">
-          <HeaderMenu />
+          <HeaderMenu categories={props.categories} types={props.types}/>
         </div>
       </div>
       <div className="headerOverlayFix" />

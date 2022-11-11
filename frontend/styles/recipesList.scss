@@ -1,6 +1,7 @@
 .recipesListContainer{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-bottom: $big;
     &.editorVersion{
         grid-template-columns: 1fr 1fr;
     }

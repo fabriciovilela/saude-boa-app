@@ -1,14 +1,10 @@
 import Head from "next/head";
-import Footer from "../components/footer/footer";
-import Header from "../components/header/header";
-import HomeText from "../components/homeText/homeText";
-import RecipesList from "../components/recipesList/recipesList";
+import Footer from "../../../components/footer/footer";
+import Header from "../../../components/header/header";
+import RecipesList from "../../../components/recipesList/recipesList";
 import axios from 'axios';
-import { useState } from "react";
 
-export default function Home(props) {
-  const [recipes, setRecipes] = useState(props.recipes);
-
+export default function filter(props) {
   return (
     <>
       <Head>
@@ -21,15 +17,23 @@ export default function Home(props) {
       </Head>
       <Header categories={props.categories} types={props.types}/>
       <div className="siteContainer">
-        <RecipesList recipes={recipes} firstListElement={<HomeText key="fristItem"/>}/>
+        <h1 className="primaryColorText boldFont">Receitas: Teste / Teste</h1>
+        <RecipesList recipes={props.recipes}/>
       </div>
       <Footer/>
     </>
   );
 }
 
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
+}
+
 export async function getStaticProps(context){
-  const recipes = await axios.get("http://localhost:8000/recipes").then(function(response){
+  const recipes = await axios.get("http://localhost:8000/recipes/filter/" + context.params.categorie + "/" + context.params.type).then(function(response){
     return response.data;
   }).catch(() => {
     return {

@@ -5,7 +5,7 @@
     z-index: 100;
 }
 .headerOverlayFix{
-    margin-top: 90px;
+    margin-top: 160px;
 }
 .headerFristSection {
     background-color: $primary;
@@ -34,4 +34,48 @@
 
 .headerCurrentUserName{
   overflow:hidden;
+}
+
+.headerMenuContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $small;
+  background-color: $secondary;
+  width: 100%;
+}
+
+.headerMenuTitle{
+  padding: $small;
+  margin: 0 $medium;
+  text-align: center;
+  cursor: pointer;
+}
+
+.headerMenuSubItensList{
+  position: absolute;
+  background-color: $dark;
+  padding: $small;
+  width: 200px;
+  li{
+    text-align: center;
+    padding: $small;
+    background-color: $primary;
+    margin: $small 0;
+    cursor: pointer;
+  }
+}
+
+.headerMenuItem{
+  .headerMenuSubItensList{
+    display: none;
+    transition: 0.3s;
+    opacity: 0;
+  }
+  &:hover{
+    .headerMenuSubItensList{
+      display: block;
+      opacity: 1;
+    }
+  }
 }
