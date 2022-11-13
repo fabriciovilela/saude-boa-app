@@ -4,6 +4,7 @@ const port = "8000";
 const mongoose = require("mongoose");
 const config = require("./config");
 const bodyParser = require("body-parser");
+const cors = require('cors');
 
 mongoose
   .connect(config.mongoDbConnectionString)
@@ -13,6 +14,8 @@ mongoose
   .catch((err) => {
     console.log("MongoDb error connect: " + err);
   });
+
+app.use(cors());
 
 app.use(
   bodyParser.json({

@@ -32,6 +32,26 @@ router.get("/filter/:categorieId/:typeId", async (req, res) => {
   }
 });
 
+router.get("/myrecipes", async (req, res) => {
+  try {
+    console.log("Tentando");
+    console.log(req.query.token);
+    const token = req.body.token || req.query.token || req.headers["x-acess-token"];
+    const tokenDec = await authService.decodeToken(token);
+
+    const recipes = await recipesModel
+      .find({
+        createBy: tokenDec._id,
+      })
+      .populate("createBy", "name")
+      .populate("recipeType", "typeName")
+      .populate("recipeCategory", "categoryName");
+    res.status(200).send(recipes);
+  } catch (err) {
+    return res.status(400).send({ error: "Error listing recipe: " + err });
+  }
+});
+
 router.post("/", authService.authorize, async (req, res) => {
   try {
     const token =

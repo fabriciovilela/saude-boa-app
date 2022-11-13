@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
     });
 
     if (!loginUser) {
-      res.status(404).send({error:"Username or password is invalid"});
+      res.status(500).send({error:"Username or password is invalid"});
       return;
     }
 

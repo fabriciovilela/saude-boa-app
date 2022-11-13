@@ -1,16 +1,14 @@
 import RecipeEditor from "../recipeEditor/recipeEditor";
 import RecipesList from "../recipesList/recipesList";
 
-export default function Panel() {
+export default function Panel(props) {
   return (
     <>
       <div className="panelColluns">
         <div>
           <h2 className="primaryColorText boldFont">Minhas receitas</h2>
           <RecipesList
-            recipes={[
-              0, 0, 0, 0
-            ]}
+            recipes={props.recipes}
             editorVersion={true}
           />
         </div>
