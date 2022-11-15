@@ -3,8 +3,28 @@ import Footer from "../../../components/footer/footer";
 import Header from "../../../components/header/header";
 import RecipesList from "../../../components/recipesList/recipesList";
 import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useRouter } from 'next/router'
 
 export default function filter(props) {
+  const router = useRouter();
+  const [ category, setCategory] = useState("");
+  const [ type, setType] = useState("");
+
+  useEffect(()=>{
+    props.types?.map((thisType)=>{
+      
+      if(thisType._id == router.query.type){
+        setType(thisType.typeName);
+      }
+    });
+    props.categories?.map((thisCategory)=>{
+      if(thisCategory._id == router.query.categorie){
+        setCategory(thisCategory.categoryName);
+      }
+    });
+  },[props.categories, props.types])
+
   return (
     <>
       <Head>
@@ -18,7 +38,7 @@ export default function filter(props) {
       <Header categories={props.categories} types={props.types}/>
       <div className="headerOverlayFix" />
       <div className="siteContainer">
-        <h1 className="primaryColorText boldFont">Receitas: Teste / Teste</h1>
+        <h1 className="primaryColorText boldFont">Receitas: <b className="darkFont">{type}</b> / <b className="darkFont">{category}</b></h1>
         <RecipesList recipes={props.recipes}/>
       </div>
       <Footer/>

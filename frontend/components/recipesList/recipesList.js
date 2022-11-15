@@ -18,7 +18,7 @@ export default function RecipesList(props) {
             )
           })
         ):(
-          <p className="dontHaveRecipeMessage">Nenhum item encontrado</p>
+          <p className="dontHaveRecipeMessage">Nenhuma receita encontrada</p>
         )
       }
       </div>

@@ -65,7 +65,7 @@ export default function RecipeDetails(props) {
           )}
           <div className="recipeDetailsTwoColluns small">
             <div className="recipeItemBackContentItem">
-              <img src="#" alt="" className="recipeItemBackIcon" />
+              <img src="/icons/clock.png" alt="" className="recipeItemBackIcon" />
               <p>
                 {props.recipe && props.recipe.preparationTime
                   ? props.recipe.preparationTime + " minutos"
@@ -73,7 +73,7 @@ export default function RecipeDetails(props) {
               </p>
             </div>
             <div className="recipeItemBackContentItem">
-              <img src="#" alt="" className="recipeItemBackIcon" />
+              <img src="/icons/yield.png" alt="" className="recipeItemBackIcon" />
               <p>
                 {props.recipe && props.recipe.yield
                   ? props.recipe.yield

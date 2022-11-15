@@ -40,7 +40,7 @@ export default function HeaderMenu(props) {
         <Link href={"/healthyeating"}>
           <div className="headerMenuItem">
             <p className="headerMenuTitle boldFont ligthText">
-              Alimentação saudavel
+              Dicas Alimentação
             </p>
           </div>
         </Link>
