@@ -1,10 +1,19 @@
 import RecipesList from "../recipesList/recipesList";
 
 export default function RecipeDetails(props) {
-
-  const returnDataString = date => {
-    const javascriptDate = new Date(date*1);
-    return (javascriptDate.getDay() > 9 ? javascriptDate.getDay() : ("0" + javascriptDate.getDay())) + "/" + (javascriptDate.getMonth() > 9 ? javascriptDate.getMonth() : ("0" + javascriptDate.getMonth())) + "/" + javascriptDate.getFullYear();
+  const returnDataString = (date) => {
+    const javascriptDate = new Date(date * 1);
+    return (
+      (javascriptDate.getDay() > 9
+        ? javascriptDate.getDay()
+        : "0" + javascriptDate.getDay()) +
+      "/" +
+      (javascriptDate.getMonth() > 9
+        ? javascriptDate.getMonth()
+        : "0" + javascriptDate.getMonth()) +
+      "/" +
+      javascriptDate.getFullYear()
+    );
   };
 
   return (
@@ -23,7 +32,7 @@ export default function RecipeDetails(props) {
                 : ""}
             </p>
           </div>
-          <img src="#" alt="" className="recipeDetailsItemImage" />
+          <img src={props.recipe?.image ? props.recipe.image : "#"} alt="" className="recipeDetailsItemImage" />
         </div>
         <div className="recipeDetailsIntro">
           <h3>
@@ -44,12 +53,16 @@ export default function RecipeDetails(props) {
             </p>
             <p>
               <b>Data de publicação: </b>
-              {props.recipe &&
-              props.recipe.createDate
+              {props.recipe && props.recipe.createDate
                 ? returnDataString(props.recipe.createDate)
                 : ""}
             </p>
           </div>
+          {props.recipe && props.recipe.credit ? (
+            <p>{props.recipe.credit}</p>
+          ) : (
+            <></>
+          )}
           <div className="recipeDetailsTwoColluns small">
             <div className="recipeItemBackContentItem">
               <img src="#" alt="" className="recipeItemBackIcon" />

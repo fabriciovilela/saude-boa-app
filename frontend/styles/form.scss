@@ -25,7 +25,7 @@
 
 .listInputItem{
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 12fr 1fr;
     column-gap: 12px;
     margin-top: $small;
     .textInput{
@@ -47,4 +47,21 @@
     background-color: $info;
     color: $light;
     font-size: 0.9em;
+}
+
+.formImage{
+    width: 100%;
+    height: auto;
+}
+
+.floatButton{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    padding: $medium;
+    background-color: $primary;
+    color: $light;
+    font-weight: 900;
+    font-size: 20px;
+    cursor: pointer;
 }

@@ -10,6 +10,10 @@ const recipeSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+    image: {
+        type: String,
+        trim: true,
+    },
     createDate: {
         type: String,
         required: [true,'createDate is mandatory'],
@@ -37,6 +41,10 @@ const recipeSchema = new mongoose.Schema({
         type: Number,
         trim: true,
         required: [true,'preparationTime is mandatory'],
+    },
+    credit: {
+        type: String,
+        trim: true,
     },
     yield: {
         type: String,

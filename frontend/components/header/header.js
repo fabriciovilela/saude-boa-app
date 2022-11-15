@@ -22,7 +22,7 @@ export default function Header(props) {
         <div className="headerFristSection">
           <div className="headerContainer siteContainer">
             <Link href={"/"}>
-              <img src="#" alt="" className="headerLogotipo" />
+              <img src="/logo.png" alt="" className="headerLogotipo" />
             </Link>
             <div>
               {cookies.TOKEN ? (
@@ -32,14 +32,13 @@ export default function Header(props) {
                     <b className="boldFont ligthText"> {cookies.USERNAME}</b>
                   </p>
                   <div className="headerLoginButton" onClick={logout}>
-                  <img src="#" alt="" className="headerLoginButtonImage" />
+                  <img src="/icons/logout.png" alt="" className="headerLoginButtonImage" />
                   <p className="boldFont ligthText">Deslogar</p>
                 </div>
                 </div>
               ) : (
                 <Link href={"/panel"}>
-                <div className="headerLoginButton">
-                  <img src="#" alt="" className="headerLoginButtonImage" />
+                <div className="headerLoginButton login">
                   <p className="boldFont ligthText">Logar</p>
                 </div>
                 </Link>
@@ -48,10 +47,9 @@ export default function Header(props) {
           </div>
         </div>
         <div className="headerMenuContainer">
-          <HeaderMenu categories={props.categories} types={props.types} />
+          <HeaderMenu categories={props.categories} types={props.types} cookies={cookies} />
         </div>
       </div>
-      <div className="headerOverlayFix" />
     </>
   );
 }

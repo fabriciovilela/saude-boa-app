@@ -34,8 +34,6 @@ router.get("/filter/:categorieId/:typeId", async (req, res) => {
 
 router.get("/myrecipes", async (req, res) => {
   try {
-    console.log("Tentando");
-    console.log(req.query.token);
     const token = req.body.token || req.query.token || req.headers["x-acess-token"];
     const tokenDec = await authService.decodeToken(token);
 

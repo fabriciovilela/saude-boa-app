@@ -17,13 +17,17 @@
   padding: $small;
 }
 .headerLogotipo {
-  width: 120px;
-  height: 40px;
+  width: auto;
+  height: 50px;
 }
 .headerLoginButton {
   display: flex;
   align-items: center;
   cursor: pointer;
+  &.login{
+    background-color: $secondary;
+    border-radius: 12px;
+  }
   .headerLoginButtonImage {
     width: 18px;
     height: 18px;

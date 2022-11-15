@@ -16,6 +16,7 @@ export default function filter(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header categories={props.categories} types={props.types}/>
+      <div className="headerOverlayFix" />
       <div className="siteContainer">
         <h1 className="primaryColorText boldFont">Receitas: Teste / Teste</h1>
         <RecipesList recipes={props.recipes}/>

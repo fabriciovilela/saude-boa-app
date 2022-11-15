@@ -5,6 +5,7 @@ import HomeText from "../components/homeText/homeText";
 import RecipesList from "../components/recipesList/recipesList";
 import axios from 'axios';
 import { useState } from "react";
+import BannerHome from "../components/bannerHome/bannerHome";
 
 export default function Home(props) {
   const [recipes, setRecipes] = useState(props.recipes);
@@ -20,6 +21,7 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header categories={props.categories} types={props.types}/>
+      <BannerHome/>
       <div className="siteContainer">
         <RecipesList recipes={recipes} firstListElement={<HomeText key="fristItem"/>}/>
       </div>

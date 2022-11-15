@@ -10,7 +10,7 @@ export default function RecipesList(props) {
             return(
               <>
               {props.maxItens == null || props.maxItens && props.maxItens > index ?
-                <RecipeItem key={recipe._id} recipe={recipe} />
+                <RecipeItem key={recipe._id} recipe={recipe} changeRecipe={props.changeRecipe}/>
                 :
                 <></>
               }

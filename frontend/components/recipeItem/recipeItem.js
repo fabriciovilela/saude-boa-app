@@ -1,14 +1,19 @@
 import Link from 'next/link';
 
 export default function RecipeItem(props) {
+  const changeRecipe = ()=>{
+    if(props.changeRecipe){
+      props.changeRecipe(props.recipe);
+    }
+  }
   return (
     <>
       <div className="recipeContainer">
-      <Link href={"/recipe/" + props.recipe._id}>
+      <Link href={props.changeRecipe ? "/panel" : "/recipe/" + props.recipe._id} onClick={changeRecipe}>
         <div className="recipeHeader">
           <p className="boldFont ligthText">{props.recipe.recipeType && props.recipe.recipeType.typeName ? props.recipe.recipeType.typeName: ""}</p>
         </div>
-        <img src="#" alt="" className="recipeItemImage" />
+        <img src={props.recipe.image ? props.recipe.image : "#"} alt="" className="recipeItemImage" />
         <div className="recipeInfosPosition">
           <div className="recipeFront">
             <div className="recipeItemFrontContent">
@@ -22,11 +27,11 @@ export default function RecipeItem(props) {
           <div className="recipeBack">
             <div className="recipeItemBackContent">
               <div className="recipeItemBackContentItem">
-                <img src="#" alt="" className="recipeItemBackIcon" />
+                <img src="/icons/clock.png"  alt="" className="recipeItemBackIcon" />
                 <p>{props.recipe.preparationTime? props.recipe.preparationTime + "\nminutos": "Não informado"}</p>
               </div>
               <div className="recipeItemBackContentItem">
-                <img src="#" alt="" className="recipeItemBackIcon" />
+                <img src="/icons/yield.png" alt="" className="recipeItemBackIcon" />
                 <p>{props.recipe.yield? props.recipe.yield: "Não informado"}</p>
               </div>
             </div>
