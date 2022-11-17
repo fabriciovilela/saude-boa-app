@@ -1,4 +1,5 @@
 import RecipesList from "../recipesList/recipesList";
+import IframePopUp from '../iframePopUp/iframePopUp';
 
 export default function RecipeDetails(props) {
   const returnDataString = (date) => {
@@ -98,6 +99,11 @@ export default function RecipeDetails(props) {
               ? props.recipe.description
               : "Sem descrição"}
           </p>
+          {props.iframe ? <></> :
+            <IframePopUp iframeId={props.recipe && props.recipe._id
+              ? props.recipe._id
+              : ""}/>
+          }
         </div>
       </div>
       <div className="recipeDetailsTwoColluns">

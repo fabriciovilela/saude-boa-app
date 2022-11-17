@@ -16,3 +16,12 @@
     margin: $big;
     height: fit-content;
 }
+
+.acceptInput{
+    display: flex;
+    margin-top: $medium;
+    input{
+        margin-right: $small;
+        width: 30px;
+    }
+}

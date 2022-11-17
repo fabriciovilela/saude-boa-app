@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { setCookie} from 'nookies';
+import { setCookie } from "nookies";
+import Link from "next/link";
 
 import axios from "axios";
 
@@ -24,13 +25,13 @@ export default function Login() {
     const loginResponse = await axios
       .post("http://localhost:8000/authenticate", loginForm)
       .then(function (response) {
-        setCookie(null, 'TOKEN', response.data.Token, {
+        setCookie(null, "TOKEN", response.data.Token, {
           maxAge: 60 * 60 * 24,
-          path: '/',
+          path: "/",
         });
-        setCookie(null, 'USERNAME', response.data.data.name, {
+        setCookie(null, "USERNAME", response.data.data.name, {
           maxAge: 60 * 60 * 24,
-          path: '/',
+          path: "/",
         });
         window.location.reload(false);
         return response.data;
@@ -38,42 +39,40 @@ export default function Login() {
       .catch((err) => {
         return err.response.data;
       });
-    
+
     setLoginForm({});
   };
 
-  const createUser = async(event)=>{
+  const createUser = async (event) => {
     event.preventDefault();
     const createUserResponse = await axios
-    .post("http://localhost:8000/user", newUser)
-    .then(function (response) {
-      setCookie(null, 'TOKEN', response.data.Token, {
-        maxAge: 60 * 60 * 24,
-        path: '/',
+      .post("http://localhost:8000/user", newUser)
+      .then(function (response) {
+        setCookie(null, "TOKEN", response.data.Token, {
+          maxAge: 60 * 60 * 24,
+          path: "/",
+        });
+
+        setCookie(null, "USERNAME", response.data.data.name, {
+          maxAge: 60 * 60 * 24,
+          path: "/",
+        });
+        window.location.reload(false);
+        return response.data;
+      })
+      .catch((err) => {
+        return err.response.data;
       });
 
-      setCookie(null, 'USERNAME', response.data.data.name, {
-        maxAge: 60 * 60 * 24,
-        path: '/',
-      });
-      window.location.reload(false);
-      return response.data;
-    })
-    .catch((err) => {
-      return err.response.data;
-    });
-  
     setNewUser({});
-  }
+  };
 
   return (
     <>
       <div className="loginColluns">
         <div className="loginPopUp">
-          <h1 className="primaryColorText boldFont">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </h1>
-          <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+          <h1 className="primaryColorText boldFont">Fazer Login</h1>
+          <h2>Acesse seu espaço para editar e acrescentar receitas aqui</h2>
           <form onSubmit={tryLogin}>
             <label className="inputLabel">E-mail:</label>
             <input
@@ -82,6 +81,7 @@ export default function Login() {
               name="email"
               value={loginForm.email ? loginForm.email : ""}
               onChange={changeLoginValue}
+              required={true}
             />
             <label className="inputLabel">Password:</label>
             <input
@@ -90,6 +90,7 @@ export default function Login() {
               id="password"
               name="password"
               value={loginForm.password ? loginForm.password : ""}
+              required={true}
               onChange={changeLoginValue}
             />
             <button className="saveButton" type="submit">
@@ -98,37 +99,58 @@ export default function Login() {
           </form>
         </div>
         <div className="loginPopUp">
-          <h1 className="primaryColorText boldFont">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </h1>
-          <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+          <h1 className="primaryColorText boldFont">Cadastre-se aqui</h1>
+          <h2>
+            Bem-vindo ao Saúde Boa Receitas! Faça seu cadastro agora de forma
+            simples e já comece a compartilhar suas receitas!
+          </h2>
           <form onSubmit={createUser}>
-          <label className="inputLabel">Nome:</label>
-          <input
-            className="textInput"
-            id="name"
-            name="name"
-            value={newUser.name ? newUser.name : ""}
-            onChange={changeNewUserValue}
-          />
-          <label className="inputLabel">E-mail:</label>
-          <input
-            className="textInput"
-            id="email"
-            name="email"
-            value={newUser.email ? newUser.email : ""}
-            onChange={changeNewUserValue}
-          />
-          <label className="inputLabel">Password:</label>
-          <input
-            className="textInput"
-            type="password"
-            id="password"
-            name="password"
-            value={newUser.password ? newUser.password : ""}
-            onChange={changeNewUserValue}
-          />
-          <button className="saveButton" type="submit">Criar novo usuário</button>
+            <label className="inputLabel">Nome:</label>
+            <input
+              className="textInput"
+              id="name"
+              name="name"
+              value={newUser.name ? newUser.name : ""}
+              onChange={changeNewUserValue}
+              required={true}
+            />
+            <label className="inputLabel">E-mail:</label>
+            <input
+              className="textInput"
+              id="email"
+              name="email"
+              value={newUser.email ? newUser.email : ""}
+              onChange={changeNewUserValue}
+              required={true}
+            />
+            <label className="inputLabel">Password:</label>
+            <input
+              className="textInput"
+              type="password"
+              id="password"
+              name="password"
+              value={newUser.password ? newUser.password : ""}
+              onChange={changeNewUserValue}
+              required={true}
+            />
+            <div className="acceptInput">
+              <input
+                type="checkbox"
+                id="accept"
+                name="accept"
+                value={false}
+                required={true}
+              ></input>
+              <p>
+                Aceitar os termos de uso{" "}
+                <a target="_blank" href="/termsofuse" rel="noopener noreferrer">
+                  <b className="primaryColorText boldFont">Termos de uso</b>
+                </a>
+              </p>
+            </div>
+            <button className="saveButton" type="submit">
+              Criar novo usuário
+            </button>
           </form>
         </div>
       </div>

@@ -1,0 +1,45 @@
+.iframeBackground{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: $dark;
+    top: 0px;
+    left: 0px;
+    z-index: 9000;
+    opacity: 0.9;
+    cursor: pointer;
+}
+.iframePopUp{
+    max-width: 400px;
+    z-index: 9001;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: $light;
+    border-radius: $medium;
+    padding: $medium;
+}
+
+.copyRecipeIframe{
+    background-color: $dark;
+    color: $light;
+    padding: $medium;
+    margin: $medium 0;
+    display: block;
+    overflow-y: scroll;
+    max-height: 200px;
+    cursor: pointer;
+    .yellow{
+        color: $warning;
+      }
+}
+
+.iframeButton{
+    padding: $medium;
+    background-color: $primary;
+    color: $light;
+    text-align: center;
+    margin-top: $big;
+    cursor: pointer;
+}

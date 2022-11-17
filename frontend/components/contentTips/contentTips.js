@@ -38,7 +38,7 @@ export default function ContentTips() {
           </li>
         </ol>
         <p>
-          (*) Conforme orientação do 
+          (*) Conforme orientação do {" "}
           <a href="https://www.gov.br/saude/pt-br/assuntos/saude-brasil/publicacoes-para-promocao-a-saude/guia_alimentar_populacao_brasileira_2ed.pdf/view">
              Guia Alimentar para a População Brasileira
           </a>
@@ -103,7 +103,7 @@ export default function ContentTips() {
         </ol>
         <p>
           (*) Conforme orientação da Dra. Maria Aparecida B. Nascimento,
-          disponível do site da 
+          disponível do site da {" "}
           <a href="https://diabetes.org.br/descobri-que-tenho-diabetes-como-devera-ficar-minha-alimentacao/">
              Sociedade Brasileira de Diabetes
           </a>
@@ -136,7 +136,7 @@ export default function ContentTips() {
           </li>
         </ul>
         <p>
-          (*) Orientações contidas no 
+          (*) Orientações contidas no {" "}
           <a href="https://www.thyca.org/download/document/865/Cookbook-Port.pdf">
              Livro de Receitas da Thyroid Cancer Survivors' Association
           </a>
@@ -177,7 +177,7 @@ export default function ContentTips() {
           </li>
         </ul>
         <p>
-          (*) Orientações contidas no site da 
+          (*) Orientações contidas no site da {" "}
           <a href="https://prae.ufg.br/n/87788-orientacoes-nutricionais-doenca-celiaca">
              Pró-Reitoria de Assuntos Estudantis da Universidade Federal de Goiás
           </a>
@@ -218,7 +218,7 @@ export default function ContentTips() {
           </li>
         </ul>
         <p>
-          (*) Orientações contidas no blog 
+          (*) Orientações contidas no blog {" "}
           <a href="https://vidasaudavel.einstein.br/intolerancia-a-lactose-cuidados-com-a-alimentacao/">
              Vida Saudável
           </a>
