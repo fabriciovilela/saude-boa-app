@@ -5,10 +5,27 @@ import Login from "../../components/login/login";
 import Panel from "../../components/panel/panel";
 import nookies from "nookies";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function PanelPage(props) {
   const [recipes, setRecipes] = useState(props.recipes);
+
+  const takeRecipes = async() => {
+    await axios
+      .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/myrecipes", {
+        params: { token: props.token },
+      })
+      .then(function (response) {
+        setRecipes(response.data);
+      })
+      .catch((err) => {
+        console.log("Erro!");
+      });
+  }
+
+  useEffect(()=>{
+    takeRecipes();
+  },[])
 
   return (
     <>
@@ -32,22 +49,8 @@ export default function PanelPage(props) {
 
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context);
-  let recipes = { notFound: true };
+  
   const token = cookies.TOKEN ? cookies.TOKEN : null;
-  if (cookies.TOKEN) {
-    recipes = await axios
-      .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/myrecipes", {
-        params: { token: cookies.TOKEN },
-      })
-      .then(function (response) {
-        return response.data;
-      })
-      .catch(() => {
-        return {
-          notFound: true,
-        };
-      });
-  }
 
   const categories = await axios.get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/category").then(function(response){
     return response.data;
@@ -66,6 +69,6 @@ export async function getServerSideProps(context) {
   });
 
   return {
-    props: { recipes, categories, types, token},
+    props: { categories, types, token},
   };
 }
