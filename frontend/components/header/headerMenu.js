@@ -55,6 +55,13 @@ export default function HeaderMenu(props) {
         ) : (
           <></>
         )}
+        <Link href={"/documentation"}>
+            <div className="headerMenuItem">
+              <p className="headerMenuTitle boldFont ligthText">
+                Para o Devs
+              </p>
+            </div>
+          </Link>
       </div>
     </>
   );

@@ -4,48 +4,75 @@
   section {
     margin: $big 0px;
     h1 {
-        color: $primary;
-        margin-bottom: $small;
-        font-weight: 900;
+      color: $primary;
+      margin-bottom: $small;
+      font-family: Caveat;
+      font-weight: 600;
+      font-size: 38px;
+      line-height: 0.9em;
     }
     h2 {
-        color: $primary;
-        margin-bottom: $small;
-        font-weight: 900;
+      color: $primary;
+      margin-bottom: $small;
+      font-family: Caveat;
+      font-weight: 600;
+      font-size: 38px;
+      line-height: 0.9em;
     }
     ol {
-        list-style-type:decimal;
+      list-style-type: decimal;
       li {
         margin: $small 0;
-        &::marker{
-            color: $primary;
-            font-weight: 900;
-            font-size: 20px;
+        &::marker {
+          color: $primary;
+          font-weight: 900;
+          font-size: 20px;
         }
       }
     }
     ul {
-        list-style-type: square;
-        li {
-            margin: $small 0;
-            &::marker{
-                color: $primary;
-                font-size: 24px;
-            }
-          }
+      list-style-type: square;
+      li {
+        margin: $small 0;
+        &::marker {
+          color: $primary;
+          font-size: 24px;
+        }
+      }
     }
-    p{
-        a{
-            color: $info;
-            font-weight: 900;
+    p {
+      span.yellow{
+        color: $warning;
+      }
+      a {
+        color: $info;
+        font-weight: 900;
+      }
+    }
+    pre{
+      &.code{
+        background-color: $dark;
+        color: $light;
+        padding: $medium;
+        margin: $medium 0;
+        width: 100%;
+        display: block;
+        overflow-y: scroll;
+        max-height: 200px;
+
+        .yellow{
+          color: $warning;
+        }
+        .green{
+          color: $success;
         }
     }
   }
 }
 
 @media (max-width: $mobileSize) {
-    .contentTips {
-        margin: $big 9% calc($big * 3) 9%;
-    }
+  .contentTips {
+    margin: $big 9% calc($big * 3) 9%;
   }
-  
+}
+}

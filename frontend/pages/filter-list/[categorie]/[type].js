@@ -38,7 +38,7 @@ export default function filter(props) {
       <Header categories={props.categories} types={props.types}/>
       <div className="headerOverlayFix" />
       <div className="siteContainer">
-        <h1 className="primaryColorText boldFont">Receitas: <b className="darkFont">{type}</b> / <b className="darkFont">{category}</b></h1>
+        <h1 className="primaryColorText boldFont listTitle">Receitas: <b className="darkFont">{type}</b> / <b className="darkFont">{category}</b></h1>
         <RecipesList recipes={props.recipes}/>
       </div>
       <Footer/>

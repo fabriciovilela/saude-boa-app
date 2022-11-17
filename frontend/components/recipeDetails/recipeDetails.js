@@ -32,7 +32,11 @@ export default function RecipeDetails(props) {
                 : ""}
             </p>
           </div>
-          <img src={props.recipe?.image ? props.recipe.image : "#"} alt="" className="recipeDetailsItemImage" />
+          <img
+            src={props.recipe?.image ? props.recipe.image : "#"}
+            alt=""
+            className="recipeDetailsItemImage"
+          />
         </div>
         <div className="recipeDetailsIntro">
           <h3>
@@ -65,7 +69,11 @@ export default function RecipeDetails(props) {
           )}
           <div className="recipeDetailsTwoColluns small">
             <div className="recipeItemBackContentItem">
-              <img src="/icons/clock.png" alt="" className="recipeItemBackIcon" />
+              <img
+                src="/icons/clock.png"
+                alt=""
+                className="recipeItemBackIcon"
+              />
               <p>
                 {props.recipe && props.recipe.preparationTime
                   ? props.recipe.preparationTime + " minutos"
@@ -73,7 +81,11 @@ export default function RecipeDetails(props) {
               </p>
             </div>
             <div className="recipeItemBackContentItem">
-              <img src="/icons/yield.png" alt="" className="recipeItemBackIcon" />
+              <img
+                src="/icons/yield.png"
+                alt=""
+                className="recipeItemBackIcon"
+              />
               <p>
                 {props.recipe && props.recipe.yield
                   ? props.recipe.yield
@@ -137,9 +149,14 @@ export default function RecipeDetails(props) {
           </ul>
         </div>
       </div>
-
-      <h2 className="primaryColorText boldFont centerFont">Veja também</h2>
-      <RecipesList recipes={props.recipes} maxItens={4} />
+      {props.iframe ? (
+        <></>
+      ) : (
+        <>
+          <h2 className="primaryColorText boldFont centerFont">Veja também</h2>
+          <RecipesList recipes={props.recipes} maxItens={4} />
+        </>
+      )}
     </>
   );
 }

@@ -5,6 +5,16 @@
 
 .primaryColorText{
     color: $primary;
+    font-family: Caveat;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 0.9em;
+}
+h1.primaryColorText{
+    font-size: 46px;
+}
+h2.primaryColorText{
+    font-size: 38px;
 }
 
 .boldFont{

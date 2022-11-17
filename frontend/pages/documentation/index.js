@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
-import RecipeDetails from "../../components/recipeDetails/recipeDetails";
 import axios from "axios";
+import ApiDocumentation from "../../components/apiDocumentation/apiDocumentation";
 
-export default function RecipePage(props) {
+export default function HealthyEating(props) {
   return (
     <>
       <Head>
@@ -18,46 +18,14 @@ export default function RecipePage(props) {
       <Header categories={props.categories} types={props.types} />
       <div className="headerOverlayFix" />
       <div className="siteContainer">
-        <RecipeDetails recipe={props.recipe} recipes={props.recipes} />
+        <ApiDocumentation/>
       </div>
       <Footer />
     </>
   );
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: true,
-  };
-}
-
 export async function getStaticProps(context) {
-  const recipe = await axios
-    .get("http://localhost:8000/recipes/" + context.params.recipeId)
-    .then(function (response) {
-      return response.data;
-    })
-    .catch(() => {
-      return {
-        notFound: true,
-      };
-    });
-  let recipes = [];
-
-  if (recipe._id) {
-    recipes = await axios
-      .get("http://localhost:8000/recipes/filter/" + recipe.recipeCategory._id + "/" + recipe.recipeType._id)
-      .then(function (response) {
-        return response.data;
-      })
-      .catch(() => {
-        return {
-          notFound: true,
-        };
-      });
-  }
-
   const categories = await axios
     .get("http://localhost:8000/category")
     .then(function (response) {
@@ -82,8 +50,6 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      recipe,
-      recipes,
       categories,
       types,
     },

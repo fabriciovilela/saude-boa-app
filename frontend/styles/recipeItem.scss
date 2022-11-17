@@ -1,5 +1,5 @@
 .recipeContainer {
-  margin: $medium;
+  margin: calc($small/2);
   background-color: $light;
   cursor: pointer;
   .recipeFront {
@@ -29,7 +29,7 @@
 }
 
 .recipeHeader {
-  background-color: $primary;
+  background-color: $secondary;
   width: 100%;
   * {
     text-align: center;
