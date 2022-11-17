@@ -47,7 +47,9 @@ export async function getStaticProps(context) {
 
   if (recipe._id) {
     recipes = await axios
-      .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/filter/" + recipe.recipeCategory._id + "/" + recipe.recipeType._id)
+      .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/filter/" + recipe.recipeCategory._id + "/" + recipe.recipeType._id,{
+        params: { page: 1, perPage: 4 },
+      })
       .then(function (response) {
         return response.data;
       })
