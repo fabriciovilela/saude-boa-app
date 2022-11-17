@@ -11,6 +11,27 @@ export default function filter(props) {
   const [ category, setCategory] = useState("");
   const [ type, setType] = useState("");
 
+  const [recipes, setRecipes] = useState([]);
+  const [currentPage, setCurrentPage] = useState(2);
+
+  const takeNewPage = async () => {
+    if(currentPage > -1){
+      await axios
+      .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/filter/" + router.query.categorie + "/" + router.query.type,{
+        params: { page: 1, perPage: 8 },
+      })
+      .then(function (response) {
+        setCurrentPage(currentPage + 1);
+        if(response.data.length === 0){
+          setCurrentPage(-1)
+        }
+        else{
+          setRecipes([...recipes, ...response.data]);
+        }
+      });
+    }
+  };
+
   useEffect(()=>{
     props.types?.map((thisType)=>{
       
@@ -23,7 +44,9 @@ export default function filter(props) {
         setCategory(thisCategory.categoryName);
       }
     });
-  },[props.categories, props.types])
+    setRecipes(props.recipes);
+    setCurrentPage(2);
+  },[props.categories, props.types, props.recipes])
 
   return (
     <>
@@ -39,7 +62,10 @@ export default function filter(props) {
       <div className="headerOverlayFix" />
       <div className="siteContainer">
         <h1 className="primaryColorText boldFont listTitle">Receitas: <b className="darkFont">{type}</b> / <b className="darkFont">{category}</b></h1>
-        <RecipesList recipes={props.recipes}/>
+        <RecipesList recipes={recipes}/>
+        {currentPage > -1 &&
+          <div className="homeMoreItensButton" onClick={takeNewPage}>Ver mais receitas</div>
+        }
       </div>
       <Footer/>
     </>
@@ -54,7 +80,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context){
-  const recipes = await axios.get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/filter/" + context.params.categorie + "/" + context.params.type).then(function(response){
+  const recipes = await axios.get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/filter/" + context.params.categorie + "/" + context.params.type,{
+    params: { page: 1, perPage: 8 },
+  }).then(function(response){
     return response.data;
   }).catch(() => {
     return {

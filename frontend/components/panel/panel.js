@@ -23,6 +23,7 @@ export default function Panel(props) {
             editorVersion={true}
             changeRecipe={changeRecipeToEdit}
           />
+          <div className="homeMoreItensButton" onClick={props.takeMoreRecipes}>Ver mais receitas</div>
         </div>
         <div>
             <h2 className="primaryColorText boldFont">{editRecipe? "Editar receita:":"Adicionar nova receita:"}</h2>

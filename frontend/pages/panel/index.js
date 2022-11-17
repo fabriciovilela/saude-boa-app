@@ -8,18 +8,25 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function PanelPage(props) {
-  const [recipes, setRecipes] = useState(props.recipes);
+  const [recipes, setRecipes] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const takeRecipes = async() => {
     await axios
-      .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/myrecipes", {
-        params: { token: props.token },
+      .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/myrecipes",{
+        params: { page: currentPage, perPage: 6, token: props.token },
       })
       .then(function (response) {
-        setRecipes(response.data);
+        setCurrentPage(currentPage + 1);
+        if(response.data.length === 0){
+          setCurrentPage(-1)
+        }
+        else{
+          setRecipes([...recipes, ...response.data]);
+        }
       })
       .catch((err) => {
-        console.log("Erro!");
+        console.log("Erro!" + err);
       });
   }
 
@@ -40,7 +47,9 @@ export default function PanelPage(props) {
       <Header categories={props.categories} types={props.types}/>
       <div className="headerOverlayFix" />
       <div className="siteContainer">
-        {props.token ? <Panel recipes={recipes} categories={props.categories} types={props.types} token={props.token}/> : <Login />}
+        {props.token ? <>
+          <Panel recipes={recipes} categories={props.categories} types={props.types} token={props.token} takeMoreRecipes={takeRecipes}/>
+        </> : <Login />}
       </div>
       <Footer />
     </>
