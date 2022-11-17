@@ -48,6 +48,21 @@ router.get("/filter/:categorieId/:typeId", async (req, res) => {
   }
 });
 
+router.get("/filter/:typeId", async (req, res) => {
+  try {
+    const recipes = await recipesModel
+      .find({
+        recipeType: req.params.typeId,
+      })
+      .populate("createBy", "name")
+      .populate("recipeType", "typeName")
+      .populate("recipeCategory", "categoryName");
+    res.status(200).send(recipes);
+  } catch (err) {
+    return res.status(400).send({ error: "Error listing recipe: " + err });
+  }
+});
+
 router.get("/myrecipes", async (req, res) => {
   try {
     const token =

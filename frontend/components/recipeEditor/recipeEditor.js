@@ -37,7 +37,7 @@ export default function RecipeEditor(props) {
 
   const saveEditRecipe = async () => {
     await axios
-      .put("http://localhost:8000/recipes/" + recipe._id,recipe, {
+      .put(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/" + recipe._id,recipe, {
         params: { token: props.token },
       })
       .then(function () {
@@ -47,7 +47,7 @@ export default function RecipeEditor(props) {
 
   const createNewRecipe = async() => {
     await axios
-    .post("http://localhost:8000/recipes",recipe, {
+    .post(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes",recipe, {
       params: { token: props.token },
     })
     .then(function () {

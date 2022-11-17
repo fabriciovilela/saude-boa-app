@@ -14,7 +14,7 @@ export default function Home(props) {
   const takeNewPage = async () => {
     if(currentPage > -1){
       await axios
-      .get("http://localhost:8000/recipes", {
+      .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes", {
         params: { page: currentPage, perPage: 8 },
       })
       .then(function (response) {
@@ -57,7 +57,7 @@ export default function Home(props) {
 
 export async function getStaticProps(context) {
   const recipes = await axios
-    .get("http://localhost:8000/recipes", {
+    .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes", {
       params: { page: 1, perPage: 8 },
     })
     .then(function (response) {
@@ -70,7 +70,7 @@ export async function getStaticProps(context) {
     });
 
   const categories = await axios
-    .get("http://localhost:8000/category")
+    .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/category")
     .then(function (response) {
       return response.data;
     })
@@ -81,7 +81,7 @@ export async function getStaticProps(context) {
     });
 
   const types = await axios
-    .get("http://localhost:8000/type")
+    .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/type")
     .then(function (response) {
       return response.data;
     })

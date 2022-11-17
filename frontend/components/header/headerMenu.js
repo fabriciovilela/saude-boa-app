@@ -8,9 +8,11 @@ export default function HeaderMenu(props) {
           props.types.map((type) => {
             return (
               <div className="headerMenuItem" key={type._id}>
-                <p className="headerMenuTitle boldFont ligthText">
-                  {type.typeName}
-                </p>
+                <Link href={"/filter-list/" + type._id}>
+                  <p className="headerMenuTitle boldFont ligthText">
+                    {type.typeName}
+                  </p>
+                </Link>
                 <ul className="headerMenuSubItensList">
                   {props.categories && props.categories.length > 0 ? (
                     props.categories.map((categorie) => {
@@ -56,12 +58,10 @@ export default function HeaderMenu(props) {
           <></>
         )}
         <Link href={"/documentation"}>
-            <div className="headerMenuItem">
-              <p className="headerMenuTitle boldFont ligthText">
-                Para Devs
-              </p>
-            </div>
-          </Link>
+          <div className="headerMenuItem">
+            <p className="headerMenuTitle boldFont ligthText">Para Devs</p>
+          </div>
+        </Link>
       </div>
     </>
   );

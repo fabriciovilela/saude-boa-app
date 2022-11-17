@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const recipe = await axios
-    .get("http://localhost:8000/recipes/" + context.params.recipeId)
+    .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/" + context.params.recipeId)
     .then(function (response) {
       return response.data;
     })

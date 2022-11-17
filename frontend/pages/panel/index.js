@@ -36,7 +36,7 @@ export async function getServerSideProps(context) {
   const token = cookies.TOKEN ? cookies.TOKEN : null;
   if (cookies.TOKEN) {
     recipes = await axios
-      .get("http://localhost:8000/recipes/myrecipes", {
+      .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/myrecipes", {
         params: { token: cookies.TOKEN },
       })
       .then(function (response) {
@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
       });
   }
 
-  const categories = await axios.get("http://localhost:8000/category").then(function(response){
+  const categories = await axios.get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/category").then(function(response){
     return response.data;
   }).catch(() => {
     return {
@@ -57,7 +57,7 @@ export async function getServerSideProps(context) {
     };
   });
 
-  const types = await axios.get("http://localhost:8000/type").then(function(response){
+  const types = await axios.get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/type").then(function(response){
     return response.data;
   }).catch(() => {
     return {

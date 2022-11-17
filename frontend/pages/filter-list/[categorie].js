@@ -1,26 +1,20 @@
 import Head from "next/head";
-import Footer from "../../../components/footer/footer";
-import Header from "../../../components/header/header";
-import RecipesList from "../../../components/recipesList/recipesList";
+import Footer from "../../components/footer/footer";
+import Header from "../../components/header/header";
+import RecipesList from "../../components/recipesList/recipesList";
 import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 
 export default function filter(props) {
   const router = useRouter();
-  const [ category, setCategory] = useState("");
   const [ type, setType] = useState("");
 
   useEffect(()=>{
     props.types?.map((thisType)=>{
       
-      if(thisType._id == router.query.type){
+      if(thisType._id == router.query.categorie){
         setType(thisType.typeName);
-      }
-    });
-    props.categories?.map((thisCategory)=>{
-      if(thisCategory._id == router.query.categorie){
-        setCategory(thisCategory.categoryName);
       }
     });
   },[props.categories, props.types])
@@ -38,7 +32,7 @@ export default function filter(props) {
       <Header categories={props.categories} types={props.types}/>
       <div className="headerOverlayFix" />
       <div className="siteContainer">
-        <h1 className="primaryColorText boldFont listTitle">Receitas: <b className="darkFont">{type}</b> / <b className="darkFont">{category}</b></h1>
+        <h1 className="primaryColorText boldFont listTitle">Receitas: <b className="darkFont">{type}</b></h1>
         <RecipesList recipes={props.recipes}/>
       </div>
       <Footer/>
@@ -54,7 +48,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context){
-  const recipes = await axios.get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/filter/" + context.params.categorie + "/" + context.params.type).then(function(response){
+  const recipes = await axios.get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/filter/" + context.params.categorie).then(function(response){
     return response.data;
   }).catch(() => {
     return {

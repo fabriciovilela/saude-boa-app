@@ -27,7 +27,7 @@ export default function HealthyEating(props) {
 
 export async function getStaticProps(context) {
   const categories = await axios
-    .get("http://localhost:8000/category")
+    .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/category")
     .then(function (response) {
       return response.data;
     })
@@ -38,7 +38,7 @@ export async function getStaticProps(context) {
     });
 
   const types = await axios
-    .get("http://localhost:8000/type")
+    .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/type")
     .then(function (response) {
       return response.data;
     })

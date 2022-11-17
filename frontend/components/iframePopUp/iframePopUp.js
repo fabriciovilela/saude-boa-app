@@ -2,7 +2,7 @@ import { useState } from "react";
 import usePreventScroll from '../../hooks/preventScroll';
 
 export default function IframePopUp(props) {
-  const iframeString = "http://localhost:3000/recipe-iframe/" + props.iframeId;
+  const iframeString = process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipe-iframe/" + props.iframeId;
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
   const preventScrollOnPopUp = usePreventScroll();
 
@@ -50,6 +50,5 @@ const closePopUp = ()=>{
         <></>
       )}
     </>
-    // <iframe src="http://localhost:3000/recipe-iframe/636a9fd2ec9c6d5708219d75" style={{height:"500px",width:"100%", border:"14px #db7018 solid", margin:"24px auto", borderRadius:"10px", boxSizing:"border-box",}}></iframe>
   );
 }

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const port = "8000";
@@ -6,10 +7,12 @@ const config = require("./config");
 const bodyParser = require("body-parser");
 const cors = require('cors');
 
+
 mongoose
   .connect(config.mongoDbConnectionString)
   .then(() => {
     console.log("MongoDb success connect");
+    
   })
   .catch((err) => {
     console.log("MongoDb error connect: " + err);

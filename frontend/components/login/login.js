@@ -23,7 +23,7 @@ export default function Login() {
   const tryLogin = async (event) => {
     event.preventDefault();
     const loginResponse = await axios
-      .post("http://localhost:8000/authenticate", loginForm)
+      .post(process.env.NEXT_PUBLIC_BACKEND_LINK + "/authenticate", loginForm)
       .then(function (response) {
         setCookie(null, "TOKEN", response.data.Token, {
           maxAge: 60 * 60 * 24,
@@ -46,7 +46,7 @@ export default function Login() {
   const createUser = async (event) => {
     event.preventDefault();
     const createUserResponse = await axios
-      .post("http://localhost:8000/user", newUser)
+      .post(process.env.NEXT_PUBLIC_BACKEND_LINK + "/user", newUser)
       .then(function (response) {
         setCookie(null, "TOKEN", response.data.Token, {
           maxAge: 60 * 60 * 24,
