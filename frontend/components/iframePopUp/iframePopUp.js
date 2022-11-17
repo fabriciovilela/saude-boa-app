@@ -2,7 +2,7 @@ import { useState } from "react";
 import usePreventScroll from '../../hooks/preventScroll';
 
 export default function IframePopUp(props) {
-  const iframeString = process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipe-iframe/" + props.iframeId;
+  const iframeString = process.env.NEXT_PUBLIC_FRONTEND_LINK + "/recipe-iframe/" + props.iframeId;
   const [popUpIsOpen, setPopUpIsOpen] = useState(false);
   const preventScrollOnPopUp = usePreventScroll();
 
