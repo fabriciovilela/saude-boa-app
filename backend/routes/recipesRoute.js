@@ -5,12 +5,28 @@ const authService = require("../services/authService");
 
 router.get("/", async (req, res) => {
   try {
-    const recipes = await recipesModel
+    let recipes = await recipesModel
       .find()
       .populate("createBy", "name")
       .populate("recipeType", "typeName")
       .populate("recipeCategory", "categoryName");
-    res.status(200).send(recipes);
+
+      recipes.sort(function (a, b) {
+      if (a.createDate > b.createDate) {
+        return -1;
+      }
+      if (a.createDate < b.createDate) {
+        return 1;
+      }
+      return 0;
+    });
+
+    const startIndex = req.query.page * req.query.perPage - req.query.perPage;
+    const finalIndex = req.query.page * req.query.perPage;
+
+    const data = await recipes.slice(startIndex, finalIndex);
+
+    res.status(200).send(data);
   } catch (err) {
     return res.status(400).send({ error: "Error listing recipe: " + err });
   }
@@ -34,7 +50,8 @@ router.get("/filter/:categorieId/:typeId", async (req, res) => {
 
 router.get("/myrecipes", async (req, res) => {
   try {
-    const token = req.body.token || req.query.token || req.headers["x-acess-token"];
+    const token =
+      req.body.token || req.query.token || req.headers["x-acess-token"];
     const tokenDec = await authService.decodeToken(token);
 
     const recipes = await recipesModel

@@ -142,7 +142,7 @@ export default function Login() {
                 required={true}
               ></input>
               <p>
-                Aceitar os termos de uso{" "}
+                Aceitar os {" "}
                 <a target="_blank" href="/termsofuse" rel="noopener noreferrer">
                   <b className="primaryColorText boldFont">Termos de uso</b>
                 </a>
