@@ -19,10 +19,10 @@ export default function RecipeEditor(props) {
       ...props.editRecipe,
       recipeType: props.editRecipe?.recipeType?._id
         ? props.editRecipe.recipeType._id
-        : null,
+        : props.types[0]._id,
       recipeCategory: props.editRecipe?.recipeCategory?._id
         ? props.editRecipe.recipeCategory._id
-        : null,
+        : props.categories[0]._id,
     });
   }, [props.editRecipe]);
 
