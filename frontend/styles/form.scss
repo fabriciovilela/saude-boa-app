@@ -38,15 +38,18 @@
     background-color: $danger;
     color: $light;
     font-size: 0.9em;
+    text-align: center;
+    cursor: pointer;
 }
 
 .listInputAddItemButton{
-    width: 100%;
     margin-top: $small;
     padding: $small;
     background-color: $info;
     color: $light;
     font-size: 0.9em;
+    text-align: center;
+    cursor: pointer;
 }
 
 .formImage{

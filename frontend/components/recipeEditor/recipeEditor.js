@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import ListInput from "../listInput/listInput";
 import axios from "axios";
-import { parseCookies } from "nookies";
 import useImage64 from "../../hooks/image64";
 
 export default function RecipeEditor(props) {
   const [recipe, setRecipe] = useState({});
-  const [cookies, setCookies] = useState({});
 
   const imageConverter = useImage64();
 
-  useEffect(() => {
-    setCookies(parseCookies());
-  }, []);
   const changeRecipeInput = (data) => {
     let tempRecipe = { ...recipe };
     tempRecipe[data.target.name] = data.target.value;
@@ -32,6 +27,7 @@ export default function RecipeEditor(props) {
   }, [props.editRecipe]);
 
   const pressSaveButton = () => {
+    console.log("Tentando salvar")
     if (recipe._id) {
       saveEditRecipe();
     } else {
@@ -42,7 +38,7 @@ export default function RecipeEditor(props) {
   const saveEditRecipe = async () => {
     await axios
       .put("http://localhost:8000/recipes/" + recipe._id,recipe, {
-        params: { token: cookies.TOKEN },
+        params: { token: props.token },
       })
       .then(function () {
         window.location.reload(false);
@@ -52,7 +48,7 @@ export default function RecipeEditor(props) {
   const createNewRecipe = async() => {
     await axios
     .post("http://localhost:8000/recipes",recipe, {
-      params: { token: cookies.TOKEN },
+      params: { token: props.token },
     })
     .then(function () {
       window.location.reload(false);
@@ -77,7 +73,7 @@ export default function RecipeEditor(props) {
       />
       <label className="inputLabel">Imagem da receita:</label>
       <input
-        class="textInput"
+        className="textInput"
         id="image"
         name="image"
         type="file"

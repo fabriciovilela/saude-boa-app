@@ -6,6 +6,7 @@ import RecipesList from "../components/recipesList/recipesList";
 import axios from 'axios';
 import { useState } from "react";
 import BannerHome from "../components/bannerHome/bannerHome";
+import IframePopUp from "../components/iframePopUp/iframePopUp";
 
 export default function Home(props) {
   const [recipes, setRecipes] = useState(props.recipes);
@@ -24,6 +25,7 @@ export default function Home(props) {
       <BannerHome/>
       <div className="siteContainer">
         <RecipesList recipes={recipes} firstListElement={<HomeText key="fristItem"/>}/>
+        <IframePopUp/>
       </div>
       <Footer/>
     </>

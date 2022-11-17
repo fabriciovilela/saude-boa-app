@@ -4,4 +4,13 @@
     background-color: $light;
     margin: $medium;
     padding: calc($big*3);
+    h1{
+        margin-bottom: $medium;
+    }
+    h2{
+        margin-bottom: $small;
+    }
+    p{
+        margin-bottom: $small;
+    }
 }

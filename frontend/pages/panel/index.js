@@ -3,17 +3,12 @@ import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import Login from "../../components/login/login";
 import Panel from "../../components/panel/panel";
-import nookies, { parseCookies } from "nookies";
+import nookies from "nookies";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function PanelPage(props) {
   const [recipes, setRecipes] = useState(props.recipes);
-  const [cookies, setCookies] = useState({});
-
-  useEffect(() => {
-    setCookies(parseCookies());
-  }, []);
 
   return (
     <>
@@ -28,7 +23,7 @@ export default function PanelPage(props) {
       <Header categories={props.categories} types={props.types}/>
       <div className="headerOverlayFix" />
       <div className="siteContainer">
-        {cookies.TOKEN ? <Panel recipes={recipes} categories={props.categories} types={props.types}/> : <Login />}
+        {props.token ? <Panel recipes={recipes} categories={props.categories} types={props.types} token={props.token}/> : <Login />}
       </div>
       <Footer />
     </>
@@ -38,6 +33,7 @@ export default function PanelPage(props) {
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context);
   let recipes = { notFound: true };
+  const token = cookies.TOKEN ? cookies.TOKEN : null;
   if (cookies.TOKEN) {
     recipes = await axios
       .get("http://localhost:8000/recipes/myrecipes", {
@@ -70,6 +66,6 @@ export async function getServerSideProps(context) {
   });
 
   return {
-    props: { recipes, categories, types },
+    props: { recipes, categories, types, token},
   };
 }

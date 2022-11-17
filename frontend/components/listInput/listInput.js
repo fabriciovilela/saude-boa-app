@@ -46,14 +46,14 @@ const addNewItem = ()=>{
                 onChange={changeArrayItem}
                 value={props.preparation ? item.instruction : item}
               />
-              <button className="listInputDeleteButton" onClick={()=> deleteOneItem(index)}>x</button>
+              <div className="listInputDeleteButton" onClick={()=> deleteOneItem(index)}>x</div>
             </div>
           );
         })
       ) : (
         <></>
       )}
-      <button className="listInputAddItemButton" onClick={addNewItem}>Adicionar novo item</button>
+      <div className="listInputAddItemButton" onClick={addNewItem}>Adicionar novo item</div>
     </>
   );
 }
