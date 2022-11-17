@@ -10,7 +10,7 @@ export default function Panel(props) {
   }
 
   const resetRecipe = ()=>{
-    setEditRecipe(null);
+    setEditRecipe({recipeCategory: props.categories[0]._id, recipeType: props.types[0]._id});
   }
 
   return (
