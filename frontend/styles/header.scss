@@ -106,9 +106,6 @@
     }
   }
   .headerMenuSubItensList{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
+    display: none !important;
   }
 }
