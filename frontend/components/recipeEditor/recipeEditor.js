@@ -27,7 +27,6 @@ export default function RecipeEditor(props) {
   }, [props.editRecipe]);
 
   const pressSaveButton = () => {
-    console.log("Tentando salvar")
     if (recipe._id) {
       saveEditRecipe();
     } else {

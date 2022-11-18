@@ -16,7 +16,7 @@ export default function filter(props) {
     if(currentPage > -1){
       await axios
       .get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/filter/" + router.query.categorie,{
-        params: { page: currentPage, perPage: 8 },
+        params: { page: currentPage, perPage: 4 },
       })
       .then(function (response) {
         setCurrentPage(currentPage + 1);
@@ -73,7 +73,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context){
   const recipes = await axios.get(process.env.NEXT_PUBLIC_BACKEND_LINK + "/recipes/filter/" + context.params.categorie,{
-    params: { page: 1, perPage: 8 },
+    params: { page: 1, perPage: 4 },
   }).then(function(response){
     return response.data;
   }).catch(() => {

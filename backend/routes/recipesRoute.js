@@ -6,27 +6,11 @@ const authService = require("../services/authService");
 router.get("/", async (req, res) => {
   try {
     let recipes = await recipesModel
-      .find()
+      .find().sort({createDate: -1}).skip(req.query.page * req.query.perPage - req.query.perPage).limit(req.query.perPage)
       .populate("createBy", "name")
       .populate("recipeType", "typeName")
       .populate("recipeCategory", "categoryName");
-
-    recipes.sort(function (a, b) {
-      if (a.createDate > b.createDate) {
-        return -1;
-      }
-      if (a.createDate < b.createDate) {
-        return 1;
-      }
-      return 0;
-    });
-
-    const startIndex = req.query.page * req.query.perPage - req.query.perPage;
-    const finalIndex = req.query.page * req.query.perPage;
-
-    const data = await recipes.slice(startIndex, finalIndex);
-
-    res.status(200).send(data);
+    res.status(200).send(recipes);
   } catch (err) {
     return res.status(400).send({ error: "Error listing recipe: " + err });
   }
@@ -38,27 +22,11 @@ router.get("/filter/:categorieId/:typeId", async (req, res) => {
       .find({
         recipeCategory: req.params.categorieId,
         recipeType: req.params.typeId,
-      })
+      }).sort({createDate: -1}).skip(req.query.page * req.query.perPage - req.query.perPage).limit(req.query.perPage)
       .populate("createBy", "name")
       .populate("recipeType", "typeName")
       .populate("recipeCategory", "categoryName");
-
-    recipes.sort(function (a, b) {
-      if (a.createDate > b.createDate) {
-        return -1;
-      }
-      if (a.createDate < b.createDate) {
-        return 1;
-      }
-      return 0;
-    });
-
-    const startIndex = req.query.page * req.query.perPage - req.query.perPage;
-    const finalIndex = req.query.page * req.query.perPage;
-
-    const data = await recipes.slice(startIndex, finalIndex);
-
-    res.status(200).send(data);
+    res.status(200).send(recipes);
   } catch (err) {
     return res.status(400).send({ error: "Error listing recipe: " + err });
   }
@@ -69,26 +37,11 @@ router.get("/filter/:typeId", async (req, res) => {
     let recipes = await recipesModel
       .find({
         recipeType: req.params.typeId,
-      })
+      }).sort({createDate: -1}).skip(req.query.page * req.query.perPage - req.query.perPage).limit(req.query.perPage)
       .populate("createBy", "name")
       .populate("recipeType", "typeName")
       .populate("recipeCategory", "categoryName");
-    recipes.sort(function (a, b) {
-      if (a.createDate > b.createDate) {
-        return -1;
-      }
-      if (a.createDate < b.createDate) {
-        return 1;
-      }
-      return 0;
-    });
-
-    const startIndex = req.query.page * req.query.perPage - req.query.perPage;
-    const finalIndex = req.query.page * req.query.perPage;
-
-    const data = await recipes.slice(startIndex, finalIndex);
-
-    res.status(200).send(data);
+    res.status(200).send(recipes);
   } catch (err) {
     return res.status(400).send({ error: "Error listing recipe: " + err });
   }
@@ -108,22 +61,7 @@ router.get("/myrecipes", async (req, res) => {
       .populate("recipeType", "typeName")
       .populate("recipeCategory", "categoryName");
 
-      recipes.sort(function (a, b) {
-        if (a.createDate > b.createDate) {
-          return -1;
-        }
-        if (a.createDate < b.createDate) {
-          return 1;
-        }
-        return 0;
-      });
-  
-      const startIndex = req.query.page * req.query.perPage - req.query.perPage;
-      const finalIndex = req.query.page * req.query.perPage;
-  
-      const data = await recipes.slice(startIndex, finalIndex);
-  
-      res.status(200).send(data);
+      res.status(200).send(recipes);
   } catch (err) {
     return res.status(400).send({ error: "Error listing recipe: " + err });
   }
