@@ -1,14 +1,14 @@
-.header{
-    position: fixed;
-    width: 100%;
-    top: 0px;
-    z-index: 100;
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 100;
 }
-.headerOverlayFix{
-    margin-top: 200px;
+.headerOverlayFix {
+  margin-top: 200px;
 }
 .headerFristSection {
-    background-color: $primary;
+  background-color: $primary;
 }
 .headerContainer {
   display: flex;
@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  &.login{
+  &.login {
     background-color: $secondary;
     border-radius: 12px;
   }
@@ -37,11 +37,11 @@
   }
 }
 
-.headerCurrentUserName{
-  overflow:hidden;
+.headerCurrentUserName {
+  overflow: hidden;
 }
 
-.headerMenuContainer{
+.headerMenuContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,19 +50,19 @@
   width: 100%;
 }
 
-.headerMenuTitle{
+.headerMenuTitle {
   padding: $small;
   margin: 0 $medium;
   text-align: center;
   cursor: pointer;
 }
 
-.headerMenuSubItensList{
+.headerMenuSubItensList {
   position: absolute;
   background-color: $dark;
   padding: $small;
   width: 200px;
-  li{
+  li {
     text-align: center;
     padding: $small;
     background-color: $primary;
@@ -71,16 +71,44 @@
   }
 }
 
-.headerMenuItem{
-  .headerMenuSubItensList{
+.headerMenuItem {
+  .headerMenuSubItensList {
     display: none;
     transition: 0.3s;
     opacity: 0;
   }
-  &:hover{
-    .headerMenuSubItensList{
+  &:hover {
+    .headerMenuSubItensList {
       display: block;
       opacity: 1;
     }
+  }
+}
+@media (max-width: $mobileSize) {
+  .header{    
+    width: 100%;
+    >.headerMenuContainer {
+      >.headerMenuContainer {
+        width: 200vw;
+        overflow-x: scroll;
+        padding: 0 40px;
+        justify-content:flex-start;
+        &::-webkit-scrollbar-track,
+        &::-webkit-scrollbar-thumb:hover,
+        &::-webkit-scrollbar,
+        &::-webkit-scrollbar-thumb {
+          border: none;
+          background: none;
+          width: 0px;
+          height: 0px;
+        }
+      }
+    }
+  }
+  .headerMenuSubItensList{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
   }
 }
