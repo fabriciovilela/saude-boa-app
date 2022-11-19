@@ -5,7 +5,7 @@ const recipesModel = require("../models/recipesModel");
 const authService = require("../services/authService");
 
 const storage = new Storage({
-  keyFilename: "./univesp-receitas-fa6fa54afe8d.json",
+  credentials: JSON.parse(process.env.GOOGLE_KEY),
   projectId: "univesp-receitas",
 });
 
