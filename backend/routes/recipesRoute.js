@@ -89,10 +89,19 @@ router.post("/", authService.authorize, async (req, res) => {
     const token =
       req.body.token || req.query.token || req.headers["x-acess-token"];
     const tokenDec = await authService.decodeToken(token);
+
     let newRecipe = new recipesModel(req.body);
     newRecipe.createBy = tokenDec._id;
     newRecipe.createDate = Date.now();
+    newRecipe.image = null;
     await newRecipe.save();
+
+    if(req.body.image != null){
+      let base64Data = req.body.image.replace(/^data:image\/png;base64,/, "");
+      var bufferData = Buffer.from(base64Data, "base64");  
+      await imagesBucket.file(newRecipe._id + ".jpeg").save(bufferData);
+    }
+    
     return res.status(200).send(newRecipe);
   } catch (err) {
     return res.status(400).send({ error: "Error create recipe: " + err });
