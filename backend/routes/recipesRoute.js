@@ -74,6 +74,9 @@ router.get("/myrecipes", async (req, res) => {
       .find({
         createBy: tokenDec._id,
       })
+      .sort({ createDate: -1 })
+      .skip(req.query.page * req.query.perPage - req.query.perPage)
+      .limit(req.query.perPage)
       .populate("createBy", "name")
       .populate("recipeType", "typeName")
       .populate("recipeCategory", "categoryName");
@@ -96,12 +99,15 @@ router.post("/", authService.authorize, async (req, res) => {
     newRecipe.image = null;
     await newRecipe.save();
 
-    if(req.body.image != null){
-      let base64Data = req.body.image.replace(/^data:image\/png;base64,/, "");
-      var bufferData = Buffer.from(base64Data, "base64");  
+    if (req.body.image != null) {
+      let temp64Image = req.body.image;
+      let base64Data = temp64Image
+        .replace(/^data:image\/png;base64,/, "")
+        .replace(/^data:image\/jpeg;base64,/, "");
+      var bufferData = Buffer.from(base64Data, "base64");
       await imagesBucket.file(newRecipe._id + ".jpeg").save(bufferData);
     }
-    
+
     return res.status(200).send(newRecipe);
   } catch (err) {
     return res.status(400).send({ error: "Error create recipe: " + err });
@@ -130,9 +136,18 @@ router.put("/:recipeId", authService.authorize, async (req, res) => {
     if (tokenDec._id == recipeToChange.createBy) {
       const updateRecipe = await recipesModel.findByIdAndUpdate(
         req.params.recipeId,
-        req.body,
+        { ...req.body, image: null },
         { new: true }
       );
+      if (req.body.image != null) {
+        let temp64Image = req.body.image;
+        let base64Data = temp64Image
+          .replace(/^data:image\/png;base64,/, "")
+          .replace(/^data:image\/jpeg;base64,/, "")
+          .replace(/^data:image\/jpg;base64,/, "");
+        var bufferData = Buffer.from(base64Data, "base64");
+        await imagesBucket.file(updateRecipe._id + ".jpeg").save(bufferData);
+      }
       return res.status(200).send(updateRecipe);
     } else {
       return res

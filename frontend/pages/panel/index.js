@@ -48,7 +48,7 @@ export default function PanelPage(props) {
       <div className="headerOverlayFix" />
       <div className="siteContainer">
         {props.token ? <>
-          <Panel recipes={recipes} categories={props.categories} types={props.types} token={props.token} takeMoreRecipes={takeRecipes}/>
+          <Panel recipes={recipes} categories={props.categories} types={props.types} token={props.token} takeMoreRecipes={takeRecipes} currentPage={currentPage}/>
         </> : <Login />}
       </div>
       <Footer />
