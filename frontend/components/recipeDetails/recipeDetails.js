@@ -34,7 +34,7 @@ export default function RecipeDetails(props) {
             </p>
           </div>
           <img
-            src={props.recipe?.image ? props.recipe.image : "#"}
+            src={props.recipe._id ? "https://storage.googleapis.com/recipes-photos/" + props.recipe._id + ".jpeg" : "#"}
             alt=""
             className="recipeDetailsItemImage"
           />

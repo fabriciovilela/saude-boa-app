@@ -1,12 +1,23 @@
 const express = require("express");
+const { Storage } = require("@google-cloud/storage");
 const router = express.Router();
 const recipesModel = require("../models/recipesModel");
 const authService = require("../services/authService");
 
+const storage = new Storage({
+  keyFilename: "./univesp-receitas-fa6fa54afe8d.json",
+  projectId: "univesp-receitas",
+});
+
+const imagesBucket = storage.bucket("recipes-photos");
+
 router.get("/", async (req, res) => {
   try {
     let recipes = await recipesModel
-      .find().sort({createDate: -1}).skip(req.query.page * req.query.perPage - req.query.perPage).limit(req.query.perPage)
+      .find()
+      .sort({ createDate: -1 })
+      .skip(req.query.page * req.query.perPage - req.query.perPage)
+      .limit(req.query.perPage)
       .populate("createBy", "name")
       .populate("recipeType", "typeName")
       .populate("recipeCategory", "categoryName");
@@ -22,7 +33,10 @@ router.get("/filter/:categorieId/:typeId", async (req, res) => {
       .find({
         recipeCategory: req.params.categorieId,
         recipeType: req.params.typeId,
-      }).sort({createDate: -1}).skip(req.query.page * req.query.perPage - req.query.perPage).limit(req.query.perPage)
+      })
+      .sort({ createDate: -1 })
+      .skip(req.query.page * req.query.perPage - req.query.perPage)
+      .limit(req.query.perPage)
       .populate("createBy", "name")
       .populate("recipeType", "typeName")
       .populate("recipeCategory", "categoryName");
@@ -37,7 +51,10 @@ router.get("/filter/:typeId", async (req, res) => {
     let recipes = await recipesModel
       .find({
         recipeType: req.params.typeId,
-      }).sort({createDate: -1}).skip(req.query.page * req.query.perPage - req.query.perPage).limit(req.query.perPage)
+      })
+      .sort({ createDate: -1 })
+      .skip(req.query.page * req.query.perPage - req.query.perPage)
+      .limit(req.query.perPage)
       .populate("createBy", "name")
       .populate("recipeType", "typeName")
       .populate("recipeCategory", "categoryName");
@@ -61,7 +78,7 @@ router.get("/myrecipes", async (req, res) => {
       .populate("recipeType", "typeName")
       .populate("recipeCategory", "categoryName");
 
-      res.status(200).send(recipes);
+    res.status(200).send(recipes);
   } catch (err) {
     return res.status(400).send({ error: "Error listing recipe: " + err });
   }

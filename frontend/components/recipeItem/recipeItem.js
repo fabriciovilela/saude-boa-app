@@ -13,7 +13,7 @@ export default function RecipeItem(props) {
         <div className="recipeHeader">
           <p className="boldFont ligthText">{props.recipe.recipeType && props.recipe.recipeType.typeName ? props.recipe.recipeType.typeName: ""}</p>
         </div>
-        <img src={props.recipe.image ? props.recipe.image : "#"} alt="" className="recipeItemImage" />
+        <img src={props.recipe._id ? "https://storage.googleapis.com/recipes-photos/" + props.recipe._id + ".jpeg" : "#"} alt="" className="recipeItemImage" />
         <div className="recipeInfosPosition">
           <div className="recipeFront">
             <div className="recipeItemFrontContent">
