@@ -22,6 +22,7 @@ export default function TermsOfUse() {
           <p>B) Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, ERROR ou azar, qualquer tipo de pornografia ilegal, de apologia ao terrorismo ou contra os direitos humanos;</p>
           <p>C) Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) do Saúde Boa Receitas, de seus fornecedores ou terceiros, para introduzir ou disseminar vírus informáticos ou quaisquer outros sistemas de hardware ou software que sejam capazes de causar danos anteriormente mencionados;</p>
           <p>D) Não publicar qualquer conteúdo que fuja do intuito principal da existência do site (divulgação de receitas restritivas), sob pena de suspensão da conta dentro do site e exclusão do conteúdo sem qualquer aviso prévio.</p>
+          <p>E) O Saúde Boa Receitas não se responsabiliza pelo conteúdo, eficácia e segurança das receitas divulgadas no site, sendo de total responsabilidade do usuário autor da receita a responsabilidade pela mesma.</p>
         </section>
         <section>
           <h2>Mais informações</h2>
