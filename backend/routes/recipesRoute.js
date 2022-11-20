@@ -146,7 +146,7 @@ router.put("/:recipeId", authService.authorize, async (req, res) => {
           .replace(/^data:image\/jpeg;base64,/, "")
           .replace(/^data:image\/jpg;base64,/, "");
         var bufferData = Buffer.from(base64Data, "base64");
-        await imagesBucket.file(updateRecipe._id + ".jpeg").save(bufferData);
+        await imagesBucket.file(req.params.recipeId + ".jpeg").save(bufferData);
       }
       return res.status(200).send(updateRecipe);
     } else {
