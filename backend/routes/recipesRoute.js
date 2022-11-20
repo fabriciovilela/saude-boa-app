@@ -93,7 +93,7 @@ router.post("/", authService.authorize, async (req, res) => {
       req.body.token || req.query.token || req.headers["x-acess-token"];
     const tokenDec = await authService.decodeToken(token);
 
-    let newRecipe = new recipesModel(req.body);
+    let newRecipe = new recipesModel({...req.body, image:null});
     newRecipe.createBy = tokenDec._id;
     newRecipe.createDate = Date.now();
     newRecipe.image = null;
@@ -138,17 +138,18 @@ router.put("/:recipeId", authService.authorize, async (req, res) => {
         req.params.recipeId,
         { ...req.body, image: null },
         { new: true }
-      );
-      if (req.body.image != null) {
-        let temp64Image = req.body.image;
-        let base64Data = temp64Image
-          .replace(/^data:image\/png;base64,/, "")
-          .replace(/^data:image\/jpeg;base64,/, "")
-          .replace(/^data:image\/jpg;base64,/, "");
-        var bufferData = Buffer.from(base64Data, "base64");
-        await imagesBucket.file(updateRecipe._id + ".jpeg").save(bufferData);
-      }
-      return res.status(200).send(updateRecipe);
+      ).then(async (response) => {
+        if (req.body.image != null) {
+          let temp64Image = req.body.image;
+          let base64Data = temp64Image
+            .replace(/^data:image\/png;base64,/, "")
+            .replace(/^data:image\/jpeg;base64,/, "")
+            .replace(/^data:image\/jpg;base64,/, "");
+          var bufferData = Buffer.from(base64Data, "base64");
+          await imagesBucket.file(updateRecipe._id + ".jpeg").save(bufferData);
+        }
+        return res.status(200).send(updateRecipe);
+      });
     } else {
       return res
         .status(403)
