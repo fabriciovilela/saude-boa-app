@@ -64,7 +64,7 @@ export default function RecipeDetails(props) {
             </p>
           </div>
           {props.recipe && props.recipe.credit ? (
-            <p>{props.recipe.credit}</p>
+            <p><b>Fonte: </b>{props.recipe.credit}</p>
           ) : (
             <></>
           )}
