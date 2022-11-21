@@ -131,7 +131,6 @@ router.put("/:recipeId", authService.authorize, async (req, res) => {
   try {
     const recipeToChange = await recipesModel.findById(req.params.recipeId);
     const imageLink = req.body.image != null ? req.params.recipeId + (Date.parse(new Date()))/1000 + ".jpeg" : req.body.image;
-    console.log(imageLink);
     const token =
       req.body.token || req.query.token || req.headers["x-acess-token"];
     const tokenDec = await authService.decodeToken(token);
