@@ -130,13 +130,15 @@ router.get("/:recipeId", async (req, res) => {
 router.put("/:recipeId", authService.authorize, async (req, res) => {
   try {
     const recipeToChange = await recipesModel.findById(req.params.recipeId);
+    const imageLink = req.body.image != null ? req.params.recipeId + (Date.parse(new Date()))/1000 + ".jpeg" : req.body.image;
+    console.log(imageLink);
     const token =
       req.body.token || req.query.token || req.headers["x-acess-token"];
     const tokenDec = await authService.decodeToken(token);
     if (tokenDec._id == recipeToChange.createBy) {
       const updateRecipe = await recipesModel.findByIdAndUpdate(
         req.params.recipeId,
-        { ...req.body, image: null },
+        { ...req.body, image: "https://storage.googleapis.com/recipes-photos/" + imageLink },
         { new: true }
       );
       if (req.body.image != null) {
@@ -146,7 +148,7 @@ router.put("/:recipeId", authService.authorize, async (req, res) => {
           .replace(/^data:image\/jpeg;base64,/, "")
           .replace(/^data:image\/jpg;base64,/, "");
         var bufferData = Buffer.from(base64Data, "base64");
-        await imagesBucket.file(req.params.recipeId + ".jpeg").save(bufferData);
+        await imagesBucket.file(imageLink).save(bufferData);
       }
       return res.status(200).send(updateRecipe);
     } else {
