@@ -14,6 +14,7 @@ export default function TermsOfUse() {
           <p>O Saúde Boa Receitas coleta apenas dados para fim de criação de conta no mesmo, armazenando apenas este dado para fins de autenticação e segurança do usuário ao acessar o ambiente destinado para cadastro de novas receitas.</p>
           <p>O mesmo ocorre para o uso de cookies no site, o site utiliza apenas first party cookies (cookies de origem primária), destinado apenas para fins de autenticação do usuário dentro do ambiente do usuário do site (área logada).</p>
           <p>Não utilizamos nenhum cookie de terceiros ou parceiros para coleta de dados.</p>
+          <p>Para mais informações sobre as diretrizes da LGPD, <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm">consulte aqui</a></p>
         </section>
         <section>
           <h2>Termos de Uso e Compromisso do Usuário</h2>
